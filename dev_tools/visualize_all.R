@@ -22,7 +22,7 @@
 #
 # Usage:
 #   Rscript dev_tools/visualize_all.R [outdir]
-#   (outdir defaults to the current working directory)
+#   (outdir defaults to dev_tools/visualize_all_output)
 
 # ---------------------------------------------------------------------------
 # 0. Configuration
@@ -36,7 +36,7 @@ args <- commandArgs(trailingOnly = TRUE);
 file_arg <- sub("^--file=", "", args_all[grepl("^--file=", args_all)]);
 script_dir <- if (length(file_arg)) dirname(normalizePath(file_arg)) else getwd();
 repo_root <- dirname(script_dir);   # dev_tools/ is directly under the repo root
-outdir <- if (length(args) >= 1L && nzchar(args[1])) args[1] else getwd();
+outdir <- if (length(args) >= 1L && nzchar(args[1])) args[1] else file.path(script_dir, "visualize_all_output");
 dir.create(outdir, showWarnings = FALSE, recursive = TRUE);
 
 cat(sprintf("Repo root : %s\n", repo_root));
@@ -84,7 +84,8 @@ close_rgl_windows <- function() {
   }
 }
 
-render_to_png <- function(coloredmeshes, outfile, view_angles = c("sd_medial_lh", "sd_medial_rh"),
+render_to_png <- function(coloredmeshes, outfile,
+                          view_angles = c("sd_lateral_lh", "sd_medial_lh", "sd_medial_rh", "sd_lateral_rh"),
                           draw_colorbar = TRUE) {
   fsbrain::export(coloredmeshes, output_img = outfile, silent = TRUE, view_angles = view_angles,
                   draw_colorbar = draw_colorbar);
