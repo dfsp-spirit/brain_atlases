@@ -1,7 +1,5 @@
 # brain_atlases
 
-**This is WORK IN PROGRESS, do NOT use yet.**
-
 
 Commonly used brain atlases in neuroimaging research, for the `fsaverage` and `fs_LR_32` templates.
 
@@ -17,6 +15,9 @@ We have converted many atlases that are orginally available only for the `FS_LR_
 | `atlas_fs_LR_32/` | Atlases on the `fs_LR` 32k template (32,492 verts/hemi): `aparc`, `aal3`, `brainnetome`, `schaefer100`–`schaefer1000`. |
 | `template_subject_meshes/` | Standard template surfaces: `fsaverage/` (FreeSurfer) and `fs_LR_32/` (DiedrichsenLab), plus `registration/` (HCP deformation spheres + cortex ROIs used for the fs_LR ↔ fsaverage resampling). |
 | `dev_tools/` | Conversion scripts: `convert_fsLR32_to_fsaverage.sh` resamples the `fs_LR` 32k atlases to `fsaverage` using the HCP deformation spheres (needs Connectome Workbench + FreeSurfer + R), `visualize_all.R` renders all atlases with the headless scimesh backend, and `make_readme_previews.sh` builds the preview images shown in the [Gallery](#gallery) below. |
+
+
+Note that the `aparc` atlas comes with FreeSurfer for fsaverage already, and you should use the FreeSurfer version.
 
 ## Gallery
 
