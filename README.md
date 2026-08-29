@@ -13,6 +13,17 @@ This is a **community service** repository: it collects well-known cortical atla
 | `template_subject_meshes/` | Standard template surfaces: `fsaverage/` (FreeSurfer) and `fs_LR_32/` (DiedrichsenLab). |
 | `dev_tools/` | Conversion scripts: `convert_fsLR32_to_fsaverage.sh` resamples the `fs_LR` 32k atlases to `fsaverage` (needs Connectome Workbench + FreeSurfer + R). |
 
+## Use as a FreeSurfer subjects dir
+
+To use the fsaverage data directly with FreeSurfer / fsbrain (as `$SUBJECTS_DIR`), run the setup script once:
+
+```sh
+bash atlas_fsaverage/subjects_dir/rearrange_into_subjects_dir.sh
+export SUBJECTS_DIR="$PWD/atlas_fsaverage/subjects_dir"
+```
+
+This copies the fsaverage meshes into `fsaverage/surf/` and the atlas `.annot` files into `fsaverage/label/`. The copies are **not** tracked in git (see `.gitignore`) — only the script is shipped.
+
 ## Attribution & citation
 
 - Every atlas has a companion `.txt` file (e.g. `atlas_fs_LR_32/aparc.txt`) that records the **author(s), source, license, and citation DOI**. Please read it before using an atlas.

@@ -1,0 +1,6 @@
+# Python virtual environment (local only, not shipped)
+.venv/
+
+# FreeSurfer subjects_dir layout, materialized on demand by
+# atlas_fsaverage/subjects_dir/rearrange_into_subjects_dir.sh (not shipped)
+atlas_fsaverage/subjects_dir/fsaverage/
