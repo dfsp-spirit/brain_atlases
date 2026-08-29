@@ -1,0 +1,14 @@
+fs_LR 32k standard human cortical surface meshes (7 surfaces x 2 hemispheres)
+by Diedrichsen Lab et al.
+
+* source: https://github.com/DiedrichsenLab/fs_LR_32
+* license: no license file found in the source repository; community-standard mesh used widely (e.g., by HCP, fsbrain demos)
+* downloaded at: 2026-08-29
+* mesh: left-right symmetric fs_LR 32k, 32,492 vertices / 64,980 faces per hemisphere
+* surfaces included: inflated, midthickness, pial, white, sphere, very_inflated, flat
+* references:
+  - Van Essen et al. (2013). The WU-Minn Human Connectome Project: An overview.
+    NeuroImage 80:62-79. doi:10.1016/j.neuroimage.2013.05.041
+  - Van Essen et al. (2012). Parcellations and hemispheric asymmetries of human
+    cerebral cortex analyzed on surface-based atlases. Cerebral Cortex 22(10):2241-2262.
+    doi:10.1093/cercor/bhr291
