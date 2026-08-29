@@ -8,10 +8,11 @@
 #
 #   * fsaverage atlases (atlas_fsaverage/) are rendered on the fsaverage template
 #     through the standard fsbrain subjects_dir API (medial views, like the
-#     '02_annot_medial_views' example in fsbrain/examples/rgl_vs_scimesh). If the
-#     fsaverage subjects_dir layout is missing, the rearrange script
-#     (atlas_fsaverage/subjects_dir/rearrange_into_subjects_dir.sh) is run first
-#     to materialize surf/ and label/.
+#     '02_annot_medial_views' example in fsbrain/examples/rgl_vs_scimesh). The
+#     rearrange script (atlas_fsaverage/subjects_dir/rearrange_into_subjects_dir.sh)
+#     is run unconditionally first so surf/ and label/ in the subjects_dir layout
+#     always mirror the current atlas_fsaverage/ annots (stale copies would render
+#     outdated labels).
 #   * fs_LR 32k atlases (atlas_fs_LR_32/) are NOT in that layout, so the meshes
 #     and annotations are loaded by file and the coloredmeshes are built from
 #     the preloaded data.
@@ -100,19 +101,18 @@ render_to_png <- function(coloredmeshes, outfile,
 cat("\n== fsaverage atlases ==\n");
 fsaverage_subjects_dir <- file.path(repo_root, "atlas_fsaverage", "subjects_dir");
 fsaverage_subject <- "fsaverage";
-probe_file <- file.path(fsaverage_subjects_dir, fsaverage_subject, "surf", "lh.white");
 
-if (!file.exists(probe_file)) {
-  cat("  fsaverage subjects_dir layout missing; running rearrange_into_subjects_dir.sh ...\n");
-  rearrange_script <- file.path(fsaverage_subjects_dir, "rearrange_into_subjects_dir.sh");
-  if (!file.exists(rearrange_script)) {
-    stop(sprintf("Rearrange script not found: %s", rearrange_script));
-  }
-  status <- system2("bash", c(rearrange_script));
-  if (status != 0L) stop("rearrange_into_subjects_dir.sh failed.");
-} else {
-  cat("  fsaverage subjects_dir layout present.\n");
+# Always re-materialize surf/ and label/ from the current atlas_fsaverage/ annots.
+# Running the rearrange script unconditionally guarantees the render matches the
+# latest annots (previously it only ran when the layout was missing, which left
+# stale copies of outdated annots in subjects_dir/fsaverage/label/).
+rearrange_script <- file.path(fsaverage_subjects_dir, "rearrange_into_subjects_dir.sh");
+if (!file.exists(rearrange_script)) {
+  stop(sprintf("Rearrange script not found: %s", rearrange_script));
 }
+cat("  Refreshing fsaverage subjects_dir layout (rearrange_into_subjects_dir.sh) ...\n");
+status <- system2("bash", c(rearrange_script));
+if (status != 0L) stop("rearrange_into_subjects_dir.sh failed.");
 
 fsaverage_atlases <- c("HCPMMP1", "aparc", "aal3", "brainnetome",
                        "schaefer100", "schaefer200", "schaefer300", "schaefer400", "schaefer1000");
