@@ -110,5 +110,5 @@ The scripts in this repo, and the conversions, were written by [Tim Schäfer](ht
 
 We consider the atlases in converted formats a derivative work, so each converted atlas is under the license of the original one, of course. Once more, see the `.txt` files mentioned in the `Attribution & citation` section for each atlas.
 
-If you desperately need to know a license for the scripts, basically the stuff under [dev_tools](./dev_tools/), I license these under the very permissive [MIT license](https://opensource.org/license/mit).
+If you desperately need to know a license for the scripts, basically the stuff under [dev_tools/](./dev_tools/), I license these under the very permissive [MIT license](https://opensource.org/license/mit).
 
