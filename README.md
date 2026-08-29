@@ -102,3 +102,13 @@ The HCP-MMP1 atlas was obtained separately from the Human Connectome Project (se
 - Every atlas has a companion `.txt` file (e.g. `atlas_fs_LR_32/aparc.txt`) that records the **author(s), source, license, and citation DOI**. Please read it before using an atlas.
 - **Cite the original papers** if you use any atlas in your work — the DOIs are listed in the `.txt` files. The atlases belong to their respective research groups; this repository merely redistributes them.
 - Template meshes come from their respective sources; see `template_subject_meshes/fs_LR_32/fs_LR_32k.txt` for the `fs_LR_32` surfaces and `template_subject_meshes/fsaverage/fsaverage.txt` for the `fsaverage` surfaces.
+
+
+## Author and License
+
+The scripts in this repo, and the conversions, were written by [Tim Schäfer](https://ts.rcmd.org).
+
+We consider the atlases in converted formats a derivative work, so each converted atlas is under the license of the original one, of course.
+
+If you need to know a license for the scripts, basically the stuff under [dev_tools](./dev_tools/), I license these under [the MIT license](https://opensource.org/license/mit).
+
