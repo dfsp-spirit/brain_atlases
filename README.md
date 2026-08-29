@@ -3,7 +3,7 @@
 
 Commonly used brain atlases in neuroimaging research, for the `fsaverage` and `fs_LR_32` templates.
 
-This is a **community service** repository: it collects well-known cortical atlases and standard template surfaces in a convenient, ready-to-use form. The atlases are **the work of their respective authors** — we only distribute (and in some cases convert) them, so please respect the original authors and their licenses, listed for each atlas  in this repo (see `Attribution & citation` section below for details).
+This repo collects well-known cortical atlases and standard template surfaces in a convenient, ready-to-use form. The atlases are **the work of their respective authors** — we only distribute (and in some cases convert) them, so please respect the original authors and their licenses, listed for each atlas  in this repo (see `Attribution & citation` section below for details).
 
 We have converted many atlases that are orginally available only for the `FS_LR_32` meshes to `fsaverage`, via resampling them in Connectome Workbench. You can inspect the workflow that was used in the scripts in the [dev_tools directory](./dev_tools/).
 
@@ -62,6 +62,40 @@ export SUBJECTS_DIR="$PWD/atlas_fsaverage/subjects_dir"
 ```
 
 This copies the fsaverage meshes into `fsaverage/surf/` and the atlas `.annot` files into `fsaverage/label/`. The copies are **not** tracked in git (see `.gitignore`) — only the script is shipped.
+
+## Reproduction
+
+All data was generated on **Ubuntu 24.04 LTS (x86_64)** with the following software:
+
+| Software | Version |
+|---|---|
+| Connectome Workbench (`wb_command`) | 2.2.1 |
+| FreeSurfer | 7.4.1 |
+| R | 4.6.1 |
+| R: `fsbrain` | 0.7.0 |
+| R: `scimesh` | 0.3.4 |
+| R: `freesurferformats` | 1.0.1 |
+| ImageMagick (`montage`/`convert`) | 6.9.12 |
+| Python: `yabplot` (fs_LR 32k atlas download) | 0.5.1 |
+| Python: `neuromaps` (HCP registration spheres/ROIs) | 0.0.7 |
+
+The `fs_LR` 32k atlases, template meshes, and HCP registration data are already included in this repo, so no downloads are needed to reproduce the derived files. Run, in this order:
+
+```sh
+# 1. Resample the fs_LR 32k atlases to fsaverage (needs wb_command + FreeSurfer + R)
+bash dev_tools/convert_fsLR32_to_fsaverage.sh
+
+# 2. Render all atlases as 4-view PNGs (needs R: fsbrain 0.7.0 + scimesh 0.3.4; visualize_all.R pins these versions)
+Rscript dev_tools/visualize_all.R
+
+# 3. Build the README preview images (needs ImageMagick)
+bash dev_tools/make_readme_previews.sh
+
+# 4. Optional: materialize the FreeSurfer subjects_dir layout
+bash atlas_fsaverage/subjects_dir/rearrange_into_subjects_dir.sh
+```
+
+The HCP-MMP1 atlas was obtained separately from the Human Connectome Project (see `atlas_fsaverage/HCPMMP1.txt`).
 
 ## Attribution & citation
 
