@@ -86,7 +86,7 @@ close_rgl_windows <- function() {
 }
 
 render_to_png <- function(coloredmeshes, outfile,
-                          view_angles = c("sd_lateral_lh", "sd_medial_lh", "sd_medial_rh", "sd_lateral_rh"),
+                          view_angles = c("sd_lateral_lh", "sd_lateral_rh", "sd_medial_lh", "sd_medial_rh"),
                           draw_colorbar = TRUE) {
   fsbrain::export(coloredmeshes, output_img = outfile, silent = TRUE, view_angles = view_angles,
                   draw_colorbar = draw_colorbar);
