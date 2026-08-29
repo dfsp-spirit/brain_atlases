@@ -29,16 +29,26 @@ ATLAS_SRC="$REPO_ROOT/atlas_fsaverage"                  # source fsaverage annot
 
 mkdir -p "$SUBJ/surf" "$SUBJ/label"
 
-# 1. fsaverage template meshes -> fsaverage/surf
-echo "== copying fsaverage meshes to $SUBJ/surf =="
+# 1. fsaverage template surfaces and labels
+echo "== copying fsaverage files to $SUBJ =="
+mkdir -p "$SUBJ/surf" "$SUBJ/label"
+
 shopt -s nullglob
-meshes=( "$MESH_SRC"/lh.* "$MESH_SRC"/rh.* )
-if [[ ${#meshes[@]} -eq 0 ]]; then
-  echo "  (no meshes found in $MESH_SRC)"
+files=( "$MESH_SRC"/lh.* "$MESH_SRC"/rh.* )
+if [[ ${#files[@]} -eq 0 ]]; then
+  echo "  (no files found in $MESH_SRC)"
 fi
-for f in "${meshes[@]}"; do
-  cp "$f" "$SUBJ/surf/"
-  echo "  surf/$(basename "$f")"
+
+for f in "${files[@]}"; do
+  fname="$(basename "$f")"
+  if [[ "$fname" == *.label ]]; then
+    target_dir="label"
+  else
+    target_dir="surf"
+  fi
+
+  cp "$f" "$SUBJ/$target_dir/"
+  echo "  $target_dir/$fname"
 done
 
 # 2. fsaverage atlases (annot files) -> fsaverage/label
