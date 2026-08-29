@@ -14,10 +14,11 @@ We have converted many atlases that are orginally available only for the `FS_LR_
 | `atlas_fsaverage/` | Atlases on the FreeSurfer `fsaverage` template (163,842 verts/hemi): HCP-MMP1, plus `aparc`, `aal3`, `brainnetome`, `schaefer100`–`schaefer1000` (resampled from `fs_LR` 32k). |
 | `atlas_fs_LR_32/` | Atlases on the `fs_LR` 32k template (32,492 verts/hemi): `aparc`, `aal3`, `brainnetome`, `schaefer100`–`schaefer1000`. |
 | `template_subject_meshes/` | Standard template surfaces: `fsaverage/` (FreeSurfer) and `fs_LR_32/` (DiedrichsenLab), plus `registration/` (HCP deformation spheres + cortex ROIs used for the fs_LR ↔ fsaverage resampling). |
-| `dev_tools/` | Conversion scripts: `convert_fsLR32_to_fsaverage.sh` resamples the `fs_LR` 32k atlases to `fsaverage` using the HCP deformation spheres (needs Connectome Workbench + FreeSurfer + R), `visualize_all.R` renders all atlases with the headless scimesh backend, and `make_readme_previews.sh` builds the preview images shown in the [Gallery](#gallery) below. |
+| `dev_tools/` | Conversion scripts: `convert_fsLR32_to_fsaverage.sh` resamples the `fs_LR` 32k atlases to `fsaverage` using the HCP deformation spheres (needs Connectome Workbench + FreeSurfer + R), `visualize_all.R` renders all atlases with the headless scimesh backend, `make_readme_previews.sh` builds the preview images shown in the [Gallery](#gallery) below, and `audit_annots.R` verifies the region counts of all atlases (see note below). |
 
+> **Note on resampling lossiness:** the `fsaverage` versions of the atlases were resampled from `fs_LR` 32k with Connectome Workbench, which is lossy — tiny parcels can disappear during the resample. The only affected atlas is `schaefer1000`, whose right hemisphere has **498 instead of 500 parcels** on `fsaverage` (the `fs_LR` 32k version still has 499). Use `dev_tools/audit_annots.R` to verify the region counts of all atlases.
 
-Note that the `aparc` atlas comes with FreeSurfer for fsaverage already, and you should use the FreeSurfer version.
+Note that the `aparc` atlas comes with FreeSurfer for fsaverage already, and you should use the FreeSurfer version. We include the converted version only for development purposes.
 
 ## Gallery
 
