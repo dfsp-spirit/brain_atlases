@@ -1,8 +1,8 @@
 fs_LR 32k standard human cortical surface meshes (7 surfaces x 2 hemispheres)
-by Diedrichsen Lab et al.
+by Van Essen Lab as part of Caret/Connectome Workbench/HCP Pipelines, distributed on GitHub by Diedrichsen Lab et al.
 
 * source: https://github.com/DiedrichsenLab/fs_LR_32
-* license: no license file found in the source repository; community-standard mesh used widely (e.g., by HCP, fsbrain demos)
+* license: no license file found in the source repository; community-standard mesh used widely (e.g., by HCP), see HCP Open Access Data Use Terms
 * downloaded at: 2026-08-29
 * mesh: left-right symmetric fs_LR 32k, 32,492 vertices / 64,980 faces per hemisphere
 * surfaces included: inflated, midthickness, pial, white, sphere, very_inflated, flat
