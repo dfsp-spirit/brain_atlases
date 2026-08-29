@@ -37,6 +37,9 @@ Full-resolution renders (4 views per atlas: lateral & medial of both hemispheres
 
 </details>
 
+
+Visually, the different Schaefer variants look the same, but they of course do have different regions counts, as illustrated by [the output](./dev_tools/audit_annots_output.txt) of our [audit script](./dev_tools/audit_annots.R).
+
 ### fsaverage template
 
 | | | |
