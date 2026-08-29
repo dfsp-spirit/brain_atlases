@@ -52,16 +52,16 @@ Full-resolution renders (4 views per atlas: lateral & medial of both hemispheres
 | [![aparc](dev_tools/visualize_all_output/previews/fsLR32_aparc_thumb.png)](dev_tools/visualize_all_output/fsLR32_aparc.png) | [![aal3](dev_tools/visualize_all_output/previews/fsLR32_aal3_thumb.png)](dev_tools/visualize_all_output/fsLR32_aal3.png) | [![brainnetome](dev_tools/visualize_all_output/previews/fsLR32_brainnetome_thumb.png)](dev_tools/visualize_all_output/fsLR32_brainnetome.png) | [![schaefer100](dev_tools/visualize_all_output/previews/fsLR32_schaefer100_thumb.png)](dev_tools/visualize_all_output/fsLR32_schaefer100.png) |
 | [![schaefer200](dev_tools/visualize_all_output/previews/fsLR32_schaefer200_thumb.png)](dev_tools/visualize_all_output/fsLR32_schaefer200.png) | [![schaefer300](dev_tools/visualize_all_output/previews/fsLR32_schaefer300_thumb.png)](dev_tools/visualize_all_output/fsLR32_schaefer300.png) | [![schaefer400](dev_tools/visualize_all_output/previews/fsLR32_schaefer400_thumb.png)](dev_tools/visualize_all_output/fsLR32_schaefer400.png) | [![schaefer1000](dev_tools/visualize_all_output/previews/fsLR32_schaefer1000_thumb.png)](dev_tools/visualize_all_output/fsLR32_schaefer1000.png) |
 
-## Use as a FreeSurfer subjects dir
+## Convert fsaverage data layout to FreeSurfer subjects dir
 
-To use the fsaverage data directly with FreeSurfer / fsbrain (as `$SUBJECTS_DIR`), run the setup script once:
+To use the fsaverage data directly with FreeSurfer / fsbrain (as `$SUBJECTS_DIR`), run this copy script once:
 
 ```sh
 bash atlas_fsaverage/subjects_dir/rearrange_into_subjects_dir.sh
 export SUBJECTS_DIR="$PWD/atlas_fsaverage/subjects_dir"
 ```
 
-This copies the fsaverage meshes into `fsaverage/surf/` and the atlas `.annot` files into `fsaverage/label/`. The copies are **not** tracked in git (see `.gitignore`) — only the script is shipped.
+This copies the fsaverage meshes into `fsaverage/surf/` and the atlas `.annot` files into `fsaverage/label/`. You can then copy this directory structure into your standard FreeSurfer subjects dir.
 
 ## Reproduction
 
