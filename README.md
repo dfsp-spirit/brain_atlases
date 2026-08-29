@@ -18,7 +18,6 @@ We have converted many atlases that are orginally available only for the `FS_LR_
 
 > **Note on resampling lossiness:** the `fsaverage` versions of the atlases were resampled from `fs_LR` 32k with Connectome Workbench, which is lossy — tiny parcels can disappear during the resample. The only affected atlas is `schaefer1000`, whose right hemisphere has **498 instead of 500 parcels** on `fsaverage` (the `fs_LR` 32k version still has 499). Use `dev_tools/audit_annots.R` to verify the region counts of all atlases.
 
-Note that the `aparc` atlas comes with FreeSurfer for fsaverage already, and you should use the FreeSurfer version. We include the converted version only for development purposes.
 
 ## Gallery
 
@@ -97,6 +96,21 @@ bash atlas_fsaverage/subjects_dir/rearrange_into_subjects_dir.sh
 ```
 
 The HCP-MMP1 atlas was obtained separately from the Human Connectome Project (see `atlas_fsaverage/HCPMMP1.txt`).
+
+
+
+## Atlases shipping with FreeSurfer
+
+We do not provide atlases for fsaverage that come with FreeSurfer, just use them from your FreeSurfer installation:
+
+In `$FREESURFER_HOME/subjects/fsaverage/label/` you will find e.g.:
+
+* the Desikan–Killiany atlas (`lh/rh.aparc.annot`)
+* the Destrieux atlas (`lh/rh.aparc.a2009s.annot`), and
+* the Yeo et al. (2011) functional parcellations (`lh/rh.Yeo2011_7Networks_N1000.annot` and `lh/rh.Yeo2011_17Networks_N1000.annot`).
+
+Note that the `aparc` atlas for fsaverage in this repo was converted from the fs_LR_32 version for development/comparison purposes only. We do not recommend to use it. Use the one that comes with FreeSurfer.
+
 
 ## Attribution & citation
 
