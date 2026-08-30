@@ -1,0 +1,10 @@
+## brain_atlases Changelog
+
+
+Version 0.1.0 -- Initial release
+---------------------------------
+* contains brain atlases for fs_LR_32 mesh in FreeSurfer .annot format, collected from various source, attribution per file in machine-readable form in <file>.attribution.json metadata files.
+* contains a pipeline to convert (re-sample) atlases from fs_LR_32 to FreeSurfer fsaverage
+* contains the converted annots for fsaverage
+* contains atlases obtained directly for fsaverage (HCPMMP1 / Glasser only so far)
+* contains fsaverage and fs_LR_32 meshes (also with machine-readable attribution)
