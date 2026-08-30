@@ -1,5 +1,9 @@
 # brain_atlases
 
+
+[![DOI](https://zenodo.org/badge/1350639261.svg)](https://doi.org/10.5281/zenodo.22170381)
+
+
 Commonly used cortical atlases in neuroimaging research, provided on the two standard human surface templates:
 
 * **`fsaverage`** (FreeSurfer, 163,842 verts/hemi): `HCP-MMP1`, `aparc`, `aal3`, `brainnetome`, `schaefer100`–`schaefer1000`
