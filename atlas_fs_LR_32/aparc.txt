@@ -1,7 +1,0 @@
-Desikan-Killiany cortical parcellation (aparc), on conte69/fs_LR 32k mesh
-by FreeSurfer (Desikan et al.)
-
-* source: https://osf.io/q5a2v/download
-* license at time of download: FreeSurfer license (https://surfer.nmr.mgh.harvard.edu/fswiki/FreeSurferUsage)
-* downloaded at: 2026-08-29
-* citation: Desikan RS, et al. An automated labeling system for subdividing the human cerebral cortex on MRI scans into gyral based regions of interest. NeuroImage 2006;31(3):968-980. doi:10.1016/j.neuroimage.2006.01.021

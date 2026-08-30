@@ -1,7 +1,0 @@
-Automated Anatomical Labelling atlas 3 (AAL3), on conte69/fs_LR 32k mesh
-by Edmund T. Rolls et al.
-
-* source: https://osf.io/rcjqk/download
-* license at time of download: freely available for academic/research use (AAL, GIN; https://www.gin.cnrs.fr/en/tools/aal/)
-* downloaded at: 2026-08-29
-* citation: Rolls ET, Huang CC, Lin CP, Feng J, Joliot M. Automated anatomical labelling atlas 3. NeuroImage 2020;206:116189. doi:10.1016/j.neuroimage.2019.116189

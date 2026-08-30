@@ -1,6 +1,0 @@
-HCP-MMP1.0 projected on fsaverage
-by Kathrin Mills
-
-* source: https://figshare.com/articles/dataset/HCP-MMP1_0_projected_on_fsaverage/3498446
-* license at time of download: https://creativecommons.org/licenses/by/4.0/
-* downloaded at: 2026-08-29
