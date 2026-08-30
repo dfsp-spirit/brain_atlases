@@ -1,0 +1,32 @@
+{
+  "atlas": "schaefer200",
+  "space": "atlas_fsaverage",
+  "mesh": "fsaverage",
+  "mesh_n_vertices": 163842,
+  "derived": true,
+  "origin_space": "atlas_fs_LR_32",
+  "origin_mesh": "fs_LR_32",
+  "origin_mesh_n_vertices": 32492,
+  "source_files": [
+    "atlas_fs_LR_32/lh.schaefer200.annot",
+    "atlas_fs_LR_32/rh.schaefer200.annot"
+  ],
+  "output_files": [
+    "atlas_fsaverage/lh.schaefer200.annot",
+    "atlas_fsaverage/rh.schaefer200.annot"
+  ],
+  "attribution_file": "atlas_fs_LR_32/schaefer200.attribution.json",
+  "method": "HCP fs_LR-deformed_to-fsaverage label-resample (ADAP_BARY_AREA) + medial-wall masking",
+  "tools": {
+    "wb_command": "2.2.1",
+    "FreeSurfer": "7.4.1",
+    "freesurferformats": "1.0.1"
+  },
+  "checksums": {
+    "atlas_fs_LR_32/lh.schaefer200.annot": "sha256:08df475dd73bd034b48b3e7a6bc45f5c657478830c487e23f5e749b06d47ecac",
+    "atlas_fs_LR_32/rh.schaefer200.annot": "sha256:6f1966a9101c97d8b8f1e1d0585fc080d67c7745702ca7a6275dc205647c74a2",
+    "atlas_fsaverage/lh.schaefer200.annot": "sha256:a6c8d869a6b120e078f47f2675c873ab2750e7653f4ecd07bb89b41ee7d25fa2",
+    "atlas_fsaverage/rh.schaefer200.annot": "sha256:97a858e562d042e20fbab87c0950ae0f18d09378f4b77c7dbb8827584e6a2167"
+  },
+  "generated_at": "2026-08-30"
+}

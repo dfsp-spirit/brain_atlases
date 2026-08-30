@@ -1,0 +1,32 @@
+{
+  "atlas": "aparc",
+  "space": "atlas_fsaverage",
+  "mesh": "fsaverage",
+  "mesh_n_vertices": 163842,
+  "derived": true,
+  "origin_space": "atlas_fs_LR_32",
+  "origin_mesh": "fs_LR_32",
+  "origin_mesh_n_vertices": 32492,
+  "source_files": [
+    "atlas_fs_LR_32/lh.aparc.annot",
+    "atlas_fs_LR_32/rh.aparc.annot"
+  ],
+  "output_files": [
+    "atlas_fsaverage/lh.aparc.annot",
+    "atlas_fsaverage/rh.aparc.annot"
+  ],
+  "attribution_file": "atlas_fs_LR_32/aparc.attribution.json",
+  "method": "HCP fs_LR-deformed_to-fsaverage label-resample (ADAP_BARY_AREA) + medial-wall masking",
+  "tools": {
+    "wb_command": "2.2.1",
+    "FreeSurfer": "7.4.1",
+    "freesurferformats": "1.0.1"
+  },
+  "checksums": {
+    "atlas_fs_LR_32/lh.aparc.annot": "sha256:f7cecf18b3adfa9e43891479459c348d2a0236e84c39b56cdac8c338c8176008",
+    "atlas_fs_LR_32/rh.aparc.annot": "sha256:6f6a82dd284aecb777e5fb030636ebbb3bea27c40a495ba6579a5c4af9d85a70",
+    "atlas_fsaverage/lh.aparc.annot": "sha256:061a6d3672d8f21b34ea6effb75fbe3477d97cafd595892593afe5f1b395dcca",
+    "atlas_fsaverage/rh.aparc.annot": "sha256:5095db20c28d10dd50377992a4ad50bfb12ef689c3c143bb9c492d530699877a"
+  },
+  "generated_at": "2026-08-30"
+}

@@ -1,0 +1,22 @@
+{
+  "atlas": "fsaverage",
+  "space": "template_subject_meshes/fsaverage",
+  "derived": false,
+  "origin": "download",
+  "source_url": "https://surfer.nmr.mgh.harvard.edu/fswiki/FsAverage",
+  "acquired_at": "2026-08-29",
+  "attribution_file": "template_subject_meshes/fsaverage/fsaverage.attribution.json",
+  "mesh": "fsaverage",
+  "mesh_n_vertices": 163842,
+  "checksums": {
+    "template_subject_meshes/fsaverage/lh.cortex.label": "sha256:e08216c1a840f0c192ac63c212fbbe12efc7e9731faa64a45083a098746b928a",
+    "template_subject_meshes/fsaverage/lh.inflated": "sha256:ce534434e04bf5cc7de314cad411ea723a34a92c748d0397b08ffa2385d111b2",
+    "template_subject_meshes/fsaverage/lh.pial": "sha256:0eec4a51769cf81b6dba9d79658d3bb35561c80a359965e312f5bb3624c38950",
+    "template_subject_meshes/fsaverage/lh.white": "sha256:11b39bd38090b504142d3fd23be422046fac4f44d6e73eb7097af58ba3e2f0cc",
+    "template_subject_meshes/fsaverage/rh.cortex.label": "sha256:432e9ce95e095c066dae2ed2fb3e6c0c67af6e77d8f52ba2d3b560b4fc50b87f",
+    "template_subject_meshes/fsaverage/rh.inflated": "sha256:63572d5f4ce9dec4466b38aa4ca40d0be1457a14584efdb76adcfb370fb24240",
+    "template_subject_meshes/fsaverage/rh.pial": "sha256:70df07692469ee97b7e48d3b346383fb0495d65bb3c39df09dd54f4ea9e7fe3b",
+    "template_subject_meshes/fsaverage/rh.white": "sha256:108a3bcfb74a3b63f5e461266e489d58333a200378d82beca7ea8487272df011"
+  },
+  "generated_at": "2026-08-30"
+}

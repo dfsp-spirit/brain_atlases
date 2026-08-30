@@ -1,0 +1,24 @@
+{
+  "atlas": "registration",
+  "space": "template_subject_meshes/registration",
+  "derived": false,
+  "origin": "download",
+  "source_url": "HCP Pipelines global/templates/standard_mesh_atlases",
+  "acquired_at": "2026-08-29",
+  "attribution_file": "template_subject_meshes/registration/HCP_standard_mesh_atlases.txt",
+  "checksums": {
+    "template_subject_meshes/registration/fs_LR-deformed_to-fsaverage.L.sphere.32k_fs_LR.surf.gii": "sha256:31987d139b6cdf1040188d1795bf23c213c57f8e84fb45f2c04823d996b0defc",
+    "template_subject_meshes/registration/fs_LR-deformed_to-fsaverage.R.sphere.32k_fs_LR.surf.gii": "sha256:8c1f67fa8fb3024ad3b292be995d5c9bae07dc4dbdd53fbac48e511e1366553d",
+    "template_subject_meshes/registration/fs_LR.32k.L.nomedialwall.label.gii": "sha256:08aa178e6acfe288cf9eb19b6d8faf49b6faefd8f69ca646a79fdffb810ac4b7",
+    "template_subject_meshes/registration/fs_LR.32k.L.vaavg_midthickness.shape.gii": "sha256:e06c0f3e6069f9244e4dd74a4265323be3324a96c0f2bf9edd5ad9734d170f6d",
+    "template_subject_meshes/registration/fs_LR.32k.R.nomedialwall.label.gii": "sha256:cf9fc9dd03038feb6faee5a4bc3e9ff611f3fd0324602927d3965307e47cbd9f",
+    "template_subject_meshes/registration/fs_LR.32k.R.vaavg_midthickness.shape.gii": "sha256:cb4b7680b8637c81398a99d4a034ee1680510ad6528d6948b4aa9c67b3e81867",
+    "template_subject_meshes/registration/fsaverage_std_sphere.L.164k_fsavg_L.surf.gii": "sha256:2dec67a92f9aec1efe412b27e6c14bae93adfdfd8ae54c0ec6f1b46397f4a3f2",
+    "template_subject_meshes/registration/fsaverage_std_sphere.R.164k_fsavg_R.surf.gii": "sha256:508947cb125da2a5a164a5dfb655069a96700eb9fd167cb0c0fb0784b80e1791",
+    "template_subject_meshes/registration/fsaverage.164k.L.nomedialwall.label.gii": "sha256:8fb7963a2c6a73741a8dc05f33eef82086ad08152ac09a51b22361e233173363",
+    "template_subject_meshes/registration/fsaverage.164k.L.vaavg_midthickness.shape.gii": "sha256:fbbccfe4bbcec0619fa6549cfe3f3460c761b0becc7097092379d98a684a52e0",
+    "template_subject_meshes/registration/fsaverage.164k.R.nomedialwall.label.gii": "sha256:c331658edbcf3e5f2abda9e9877085653a2fd056f9508580a5b8e5578357fea2",
+    "template_subject_meshes/registration/fsaverage.164k.R.vaavg_midthickness.shape.gii": "sha256:2cda969b6295e96f510aad9d1df329afc36859aba7ee95564b1217b43f30ee03"
+  },
+  "generated_at": "2026-08-30"
+}

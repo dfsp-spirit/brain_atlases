@@ -1,0 +1,16 @@
+{
+  "atlas": "schaefer400",
+  "space": "atlas_fs_LR_32",
+  "derived": false,
+  "origin": "download",
+  "source_url": "https://osf.io/k8dvw/download",
+  "acquired_at": "2026-08-29",
+  "attribution_file": "atlas_fs_LR_32/schaefer400.attribution.json",
+  "mesh": "fs_LR_32",
+  "mesh_n_vertices": 32492,
+  "checksums": {
+    "atlas_fs_LR_32/lh.schaefer400.annot": "sha256:a097f58409870f801a168fcd272bc4088db2154977610094a1c3768c7b06f8d5",
+    "atlas_fs_LR_32/rh.schaefer400.annot": "sha256:5b209678c88a9f1ce6a11270256d1dec351b6bacfabb4f6e2b729bad5a8ddd2d"
+  },
+  "generated_at": "2026-08-30"
+}

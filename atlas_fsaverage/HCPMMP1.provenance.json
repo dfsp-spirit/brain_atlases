@@ -1,0 +1,17 @@
+{
+  "atlas": "HCPMMP1",
+  "space": "atlas_fsaverage",
+  "derived": false,
+  "origin": "download",
+  "source_url": "https://figshare.com/articles/dataset/HCP-MMP1_0_projected_on_fsaverage/3498446",
+  "acquired_at": "2026-08-29",
+  "attribution_file": "atlas_fsaverage/HCPMMP1.attribution.json",
+  "mesh": "fsaverage",
+  "mesh_n_vertices": 163842,
+  "source_doi": "10.6084/m9.figshare.3498446.v2",
+  "checksums": {
+    "atlas_fsaverage/lh.HCPMMP1.annot": "sha256:d4da634644b4c595dbda23963e01752059f0e7714be70169eb84e25e09ba2b44",
+    "atlas_fsaverage/rh.HCPMMP1.annot": "sha256:744eff4e57ce8121c43851eea425475baf92d9ba8686299a7435517ab972e9a2"
+  },
+  "generated_at": "2026-08-30"
+}

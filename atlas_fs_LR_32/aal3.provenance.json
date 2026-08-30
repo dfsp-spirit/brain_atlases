@@ -1,0 +1,16 @@
+{
+  "atlas": "aal3",
+  "space": "atlas_fs_LR_32",
+  "derived": false,
+  "origin": "download",
+  "source_url": "https://osf.io/rcjqk/download",
+  "acquired_at": "2026-08-29",
+  "attribution_file": "atlas_fs_LR_32/aal3.attribution.json",
+  "mesh": "fs_LR_32",
+  "mesh_n_vertices": 32492,
+  "checksums": {
+    "atlas_fs_LR_32/lh.aal3.annot": "sha256:529bac61a30fb6940ca53bbfe68bddad3b77fedb373980b8a2901751f7dcf2a7",
+    "atlas_fs_LR_32/rh.aal3.annot": "sha256:0a842f570a83dda71e2b0035a54ba66aed27031b3f1a90194cb6753c9117459e"
+  },
+  "generated_at": "2026-08-30"
+}

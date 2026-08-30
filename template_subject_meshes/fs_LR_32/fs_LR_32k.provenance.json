@@ -1,0 +1,28 @@
+{
+  "atlas": "fs_LR_32k",
+  "space": "template_subject_meshes/fs_LR_32",
+  "derived": false,
+  "origin": "download",
+  "source_url": "https://github.com/DiedrichsenLab/fs_LR_32",
+  "acquired_at": "2026-08-29",
+  "attribution_file": "template_subject_meshes/fs_LR_32/fs_LR_32k.attribution.json",
+  "mesh": "fs_LR_32",
+  "mesh_n_vertices": 32492,
+  "checksums": {
+    "template_subject_meshes/fs_LR_32/fs_LR.32k.L.flat.surf.gii": "sha256:1862739a2924032a9a19e95efa6024c494094c2f7851ae45b11d6bf2e38dfca4",
+    "template_subject_meshes/fs_LR_32/fs_LR.32k.L.inflated.surf.gii": "sha256:375946dadb7d696377c2e7fa0a8372d3a61afda1db492b8bceea157f2d2de399",
+    "template_subject_meshes/fs_LR_32/fs_LR.32k.L.midthickness.surf.gii": "sha256:15d0621c87193972e6788fbc489b4ecf9d88a49b73789b31c242483e50ad3b7b",
+    "template_subject_meshes/fs_LR_32/fs_LR.32k.L.pial.surf.gii": "sha256:01900299913a73481234855dda1e14807ff26bc20300d7d6068e4502aebb50a9",
+    "template_subject_meshes/fs_LR_32/fs_LR.32k.L.sphere.surf.gii": "sha256:1846b053f870405466776d004d714cc1da0cec7361761c65a864782dd09f30a8",
+    "template_subject_meshes/fs_LR_32/fs_LR.32k.L.very_inflated.surf.gii": "sha256:76073d45d49f60a8d92c94dcfdbdd0b63c67c775b4a95854a4d7750b0fee36aa",
+    "template_subject_meshes/fs_LR_32/fs_LR.32k.L.white.surf.gii": "sha256:4ccd40f44dffeb3adc7da22262bfc02f9d036e7e035ce15a1cb53ba13f86cb2e",
+    "template_subject_meshes/fs_LR_32/fs_LR.32k.R.flat.surf.gii": "sha256:db135bb704cd4ab0664fc2b4e97abef705f368948e4f514010905e850f9bf005",
+    "template_subject_meshes/fs_LR_32/fs_LR.32k.R.inflated.surf.gii": "sha256:cde04ebddf0043328894a27026a51d3060755c25163c046e821884ce10c1adf4",
+    "template_subject_meshes/fs_LR_32/fs_LR.32k.R.midthickness.surf.gii": "sha256:3314d8150f75ca3cdb6f9d7fa0a4ea49d57fb681dbb2bd562eb73a350f5301f6",
+    "template_subject_meshes/fs_LR_32/fs_LR.32k.R.pial.surf.gii": "sha256:d8c5e1febb26836c5c2477595f65098c835d9a255df5fad19d1d7b5016f03c4e",
+    "template_subject_meshes/fs_LR_32/fs_LR.32k.R.sphere.surf.gii": "sha256:1a898433a9f1070e4e0435d4db966776ecc3291bfcd444efc7910aeffb91561c",
+    "template_subject_meshes/fs_LR_32/fs_LR.32k.R.very_inflated.surf.gii": "sha256:352c54049948d1d3311dcae38d5db53f5299f22d9c0e5140f2eaf9a520b1f0e5",
+    "template_subject_meshes/fs_LR_32/fs_LR.32k.R.white.surf.gii": "sha256:223eea055b6e8c57159c72861d7a73917e172b3c2adcc0ff3dd0b27fc5e842f8"
+  },
+  "generated_at": "2026-08-30"
+}

@@ -1,0 +1,16 @@
+{
+  "atlas": "brainnetome",
+  "space": "atlas_fs_LR_32",
+  "derived": false,
+  "origin": "download",
+  "source_url": "https://osf.io/5nr4x/download",
+  "acquired_at": "2026-08-29",
+  "attribution_file": "atlas_fs_LR_32/brainnetome.attribution.json",
+  "mesh": "fs_LR_32",
+  "mesh_n_vertices": 32492,
+  "checksums": {
+    "atlas_fs_LR_32/lh.brainnetome.annot": "sha256:a397ae42ffff274452e8a5caf421d8d63b79e99843f48c7b6fe0a32b4882e015",
+    "atlas_fs_LR_32/rh.brainnetome.annot": "sha256:27e0bdbbacd45f79de9f71a2397ffa3fb1f270e682a5c901d17451138ef6e1ad"
+  },
+  "generated_at": "2026-08-30"
+}

@@ -28,12 +28,82 @@
 #   bash dev_tools/convert_fsLR32_to_fsaverage.sh
 #
 # Reads atlases from atlas_fs_LR_32/ and writes fsaverage annots to atlas_fsaverage/.
+# For every converted atlas it also writes a machine-readable provenance.json next to
+# the annots (source files, tool versions, sha256 checksums) that records where the
+# atlas came from and how it was produced.
 
 set -euo pipefail
 
 # ---- settings (edit once) ------------------------------------------------------
 WB_COMMAND="$HOME/software/connectome_workbench/workbench/bin_linux64/wb_command"
 FREESURFER_HOME="${FREESURFER_HOME:-/home/ts/software/freesurfer/freesurfer7.4.1}"
+
+# ---- provenance generation -----------------------------------------------------
+# Best-effort tool version detection (recorded in the provenance.json files).
+detect_wb_version() {
+  "$WB_COMMAND" -version 2>&1 | sed -n 's/^Version: //p' | head -1 || true
+}
+detect_fs_version() {
+  if [ -f "$FREESURFER_HOME/build-stamp.txt" ]; then
+    grep -o '[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*' "$FREESURFER_HOME/build-stamp.txt" | head -1 || true
+  fi
+}
+detect_ff_version() {
+  Rscript -e 'cat(as.character(packageVersion("freesurferformats")))' 2>/dev/null || true
+}
+
+# Write the provenance.json for one converted atlas (all paths relative to repo root).
+# Requires both hemispheres of <atlas> to have been written to ATLAS_OUT already.
+write_converted_provenance() {
+  local atlas="$1"
+  local prov="$ATLAS_OUT/$atlas.provenance.json"
+  local wb_ver fs_ver ff_ver
+  wb_ver="$(detect_wb_version)"
+  fs_ver="$(detect_fs_version)"
+  ff_ver="$(detect_ff_version)"
+
+  local sh_src_lh sh_src_rh sh_out_lh sh_out_rh
+  sh_src_lh="$(sha256sum "$ATLAS_SRC/lh.$atlas.annot" | cut -d' ' -f1)"
+  sh_src_rh="$(sha256sum "$ATLAS_SRC/rh.$atlas.annot" | cut -d' ' -f1)"
+  sh_out_lh="$(sha256sum "$ATLAS_OUT/lh.$atlas.annot" | cut -d' ' -f1)"
+  sh_out_rh="$(sha256sum "$ATLAS_OUT/rh.$atlas.annot" | cut -d' ' -f1)"
+
+  cat > "$prov" <<EOF
+{
+  "atlas": "$atlas",
+  "space": "atlas_fsaverage",
+  "mesh": "fsaverage",
+  "mesh_n_vertices": 163842,
+  "derived": true,
+  "origin_space": "atlas_fs_LR_32",
+  "origin_mesh": "fs_LR_32",
+  "origin_mesh_n_vertices": 32492,
+  "source_files": [
+    "atlas_fs_LR_32/lh.$atlas.annot",
+    "atlas_fs_LR_32/rh.$atlas.annot"
+  ],
+  "output_files": [
+    "atlas_fsaverage/lh.$atlas.annot",
+    "atlas_fsaverage/rh.$atlas.annot"
+  ],
+  "attribution_file": "atlas_fs_LR_32/$atlas.attribution.json",
+  "method": "HCP fs_LR-deformed_to-fsaverage label-resample (ADAP_BARY_AREA) + medial-wall masking",
+  "tools": {
+    "wb_command": "$wb_ver",
+    "FreeSurfer": "$fs_ver",
+    "freesurferformats": "$ff_ver"
+  },
+  "checksums": {
+    "atlas_fs_LR_32/lh.$atlas.annot": "sha256:$sh_src_lh",
+    "atlas_fs_LR_32/rh.$atlas.annot": "sha256:$sh_src_rh",
+    "atlas_fsaverage/lh.$atlas.annot": "sha256:$sh_out_lh",
+    "atlas_fsaverage/rh.$atlas.annot": "sha256:$sh_out_rh"
+  },
+  "generated_at": "$(date +%Y-%m-%d)"
+}
+EOF
+  echo "wrote $prov"
+}
 
 # ---- derived paths -------------------------------------------------------------
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -79,6 +149,9 @@ for ATLAS in "${ATLASES[@]}"; do
       "$WORK/${HEMI_LR}.${ATLAS}.fsaverage.label.gii" \
       "$ATLAS_OUT/${HEMI_LR}.${ATLAS}.annot"
   done
+
+  # 5. write the machine-readable provenance record for this atlas
+  write_converted_provenance "$ATLAS"
 done
 
 echo "DONE. fsaverage annots written to $ATLAS_OUT"
