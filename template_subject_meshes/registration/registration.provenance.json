@@ -3,9 +3,9 @@
   "space": "template_subject_meshes/registration",
   "derived": false,
   "origin": "download",
-  "source_url": "HCP Pipelines global/templates/standard_mesh_atlases",
+  "source_url": "https://github.com/neurodatascience/neuromaps",
   "acquired_at": "2026-08-29",
-  "attribution_file": "template_subject_meshes/registration/HCP_standard_mesh_atlases.txt",
+  "attribution_file": "template_subject_meshes/registration/registration.attribution.json",
   "checksums": {
     "template_subject_meshes/registration/fs_LR-deformed_to-fsaverage.L.sphere.32k_fs_LR.surf.gii": "sha256:31987d139b6cdf1040188d1795bf23c213c57f8e84fb45f2c04823d996b0defc",
     "template_subject_meshes/registration/fs_LR-deformed_to-fsaverage.R.sphere.32k_fs_LR.surf.gii": "sha256:8c1f67fa8fb3024ad3b292be995d5c9bae07dc4dbdd53fbac48e511e1366553d",

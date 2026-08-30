@@ -1,0 +1,13 @@
+{
+  "atlas": "registration",
+  "origin_space": "template_subject_meshes/registration",
+  "title": "HCP standard mesh atlas deformation spheres and ROIs (for fs_LR <-> fsaverage resampling)",
+  "authors": "Washington University / HCP Pipelines (and the neuromaps package)",
+  "source_url": "https://github.com/neurodatascience/neuromaps",
+  "license": {
+    "name": "HCP data usage terms",
+    "url": "https://www.humanconnectome.org/study/hcp-young-adult/data-use-terms"
+  },
+  "acquired_at": "2026-08-29",
+  "notes": "Deformation spheres and cortex ROIs used to resample between the fs_LR 32k and fsaverage (164k) templates. The originals are the HCP Pipelines global/templates/standard_mesh_atlases files; the copies in this repo were bundled with and obtained via the Python package 'neuromaps' (hence the source_url). Purpose: the naive fs_LR 32k sphere is not in the same spherical coordinate system as FreeSurfer's sphere.reg, so these deformed spheres are required for correct wb_command -label-resample / -metric-resample."
+}

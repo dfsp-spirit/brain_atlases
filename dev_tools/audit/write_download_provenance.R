@@ -60,9 +60,8 @@ origins <- list(
   # downloaded template meshes (one origin per dir, so glob)
   list(atlas = "fs_LR_32k",    space = "template_subject_meshes/fs_LR_32"),
   list(atlas = "fsaverage",    space = "template_subject_meshes/fsaverage"),
-  # downloaded registration data (no attribution.json yet; attribution is a .txt)
-  list(atlas = "registration", space = "template_subject_meshes/registration",
-       attribution_file = "template_subject_meshes/registration/HCP_standard_mesh_atlases.txt")
+  # downloaded registration data (HCP deformation spheres/ROIs; has attribution.json)
+  list(atlas = "registration", space = "template_subject_meshes/registration")
 )
 
 # sha256 of a repo-relative path.
