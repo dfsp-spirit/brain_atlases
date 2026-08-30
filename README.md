@@ -18,6 +18,15 @@ We have converted many atlases that are orginally available only for the `FS_LR_
 
 > **Note on resampling lossiness:** the `fsaverage` versions of the atlases were resampled from `fs_LR` 32k with Connectome Workbench, which is lossy — tiny parcels can disappear during the resample. The only affected atlas is `schaefer1000`, whose right hemisphere has **498 instead of 500 parcels** on `fsaverage` (the `fs_LR` 32k version still has 499). Use `dev_tools/audit/audit_annots.R` to verify the region counts of all atlases.
 
+## Usage
+
+The atlases are stored as FreeSurfer annotation (`.annot`) files. Read them with the standard tool of your language:
+
+* **R** — `freesurferformats::read.fs.annot("atlas_fs_LR_32/lh.aparc.annot")`
+* **Python** — `nibabel.freesurfer.read_annot("atlas_fs_LR_32/lh.aparc.annot")`
+* **MATLAB** — FreeSurfer's `read_annotation("atlas_fs_LR_32/lh.aparc.annot")` (from `$FREESURFER_HOME/matlab/`)
+
+The annots are per-hemisphere (`lh.*` / `rh.*`); use them together with the matching template surfaces in [`template_subject_meshes/`](./template_subject_meshes/).
 
 ## Gallery
 
