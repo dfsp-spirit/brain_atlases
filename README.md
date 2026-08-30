@@ -1,11 +1,15 @@
 # brain_atlases
 
+Commonly used cortical atlases in neuroimaging research, provided on the two standard human surface templates:
 
-Commonly used brain atlases in neuroimaging research, for the `fsaverage` and `fs_LR_32` templates.
+* **`fsaverage`** (FreeSurfer, 163,842 verts/hemi): `HCP-MMP1`, `aparc`, `aal3`, `brainnetome`, `schaefer100`–`schaefer1000`
+* **`fs_LR_32`** (conte69 / 32k, 32,492 verts/hemi): `aparc`, `aal3`, `brainnetome`, `schaefer100`–`schaefer1000`
 
-This repo collects well-known cortical atlases and standard template surfaces in a convenient, ready-to-use form. The atlases are **the work of their respective authors** — we only distribute (and in some cases convert) them, so please respect the original authors and their licenses, listed for each atlas  in this repo (see `Attribution & citation` section below for details).
+Most of these atlases are natively distributed only for the `fs_LR_32` mesh. The `fsaverage` versions in here were produced by the conversion pipeline in this repo: the `fs_LR_32` atlases are resampled to `fsaverage` with Connectome Workbench, using the HCP deformation spheres and medial-wall masking (reproducible via `dev_tools/convert_fsLR32_to_fsaverage.sh`). Resampling is slightly lossy for tiny parcels (see the note on resampling lossiness below), and every converted atlas records where it came from and how it was made in a `*.provenance.json` sidecar.
 
-We have converted many atlases that are orginally available only for the `FS_LR_32` meshes to `fsaverage`, via resampling them in Connectome Workbench. You can inspect the workflow that was used in the scripts in the [dev_tools directory](./dev_tools/).
+The one fsaverage atlas we did *not* convert is `HCP-MMP1`, which is natively distributed for `fsaverage` and only re-distributed here.
+
+The atlases are **the work of their respective authors** — we only distribute (and in some cases convert) them, so please respect the original authors and their licenses, listed for each atlas in this repo (see [Attribution & citation](#attribution--citation) below).
 
 ## Layout
 
