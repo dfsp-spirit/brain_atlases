@@ -88,14 +88,13 @@ The `fs_LR` 32k atlases, template meshes, and HCP registration data are already 
 # 1. Resample the fs_LR 32k atlases to fsaverage (needs wb_command + FreeSurfer + R)
 bash dev_tools/convert_fsLR32_to_fsaverage.sh
 
-# 2. Optional: materialize the FreeSurfer subjects_dir layout ()
+# 2. Materialize the FreeSurfer subjects_dir layout (used by step 3)
 bash atlas_fsaverage/subjects_dir/rearrange_into_subjects_dir.sh
 
-
-# 2. Render all atlases as 4-view PNGs (needs R: fsbrain 0.7.0 + scimesh 0.3.4; visualize_all.R pins these versions)
+# 3. Render all atlases as 4-view PNGs (needs R: fsbrain 0.7.0 + scimesh 0.3.4; visualize_all.R pins these versions)
 Rscript dev_tools/visualize_all.R
 
-# 3. Build the README preview images (needs ImageMagick)
+# 4. Build the README preview images (needs ImageMagick)
 bash dev_tools/make_readme_previews.sh
 ```
 
