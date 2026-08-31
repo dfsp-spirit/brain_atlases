@@ -1,8 +1,8 @@
 ## brain_atlases Changelog
 
 
-Version 0.2.0 -- Current WIP
-----------------------------
+Version 0.2.0 -- Full data SUBJECTS_DIR export and unifications
+----------------------------------------------------------------
 * added `dev_tools/convert_fs_LR_32_mesh_to_surf.R` to convert the fs_LR 32k template meshes from GIFTI to native FreeSurfer surface format (stored in `template_subject_meshes/fs_LR_32/converted_to_freesurfer_surf_format/`).
 * BREAKING: moved the subjects-dir materialization script `atlas_fsaverage/subjects_dir/rearrange_into_subjects_dir.sh` to `dev_tools/rearrange_fsaverage_into_subjects_dir.sh` and moved the `subjects_dir` layout itself to the repo root; added `dev_tools/rearrange_fs_LR_32_into_subjects_dir.sh` so the subjects_dir now also contains the fs_LR_32 meshes and atlases. Anything calling the old script path or the old `atlas_fsaverage/subjects_dir` location must be updated.
 * BREAKING: renamed the Desikan-Killiany atlas `aparc` to `aparc_conv` throughout the repo (data files, metadata, scripts, docs) to avoid a name clash with the `aparc` atlas shipped with FreeSurfer.
