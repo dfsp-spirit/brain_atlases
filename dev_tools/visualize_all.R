@@ -13,9 +13,9 @@
 #     is run unconditionally first so surf/ and label/ in the subjects_dir layout
 #     always mirror the current atlas_fsaverage/ annots (stale copies would render
 #     outdated labels).
-#   * fs_LR 32k atlases (atlas_fs_LR_32/) are NOT in that layout, so the meshes
-#     and annotations are loaded by file and the coloredmeshes are built from
-#     the preloaded data.
+#   * fs_LR 32k atlases are rendered on the fs_LR_32 subject in the same
+#     materialized subjects_dir layout (via dev_tools/rearrange_fs_LR_32_into_subjects_dir.sh),
+#     using the same fsbrain subjects_dir API as the fsaverage atlases.
 #
 # Package versions are pinned for reproducibility: fsbrain 0.7.0 and scimesh
 # 0.3.4 are installed from CRAN if a different version is present (this is
@@ -123,26 +123,33 @@ for (atlas in fsaverage_atlases) {
 }
 
 # ---------------------------------------------------------------------------
-# 4. fs_LR 32k atlases (loaded by file, not in subjects_dir layout)
+# 4. fs_LR 32k atlases (standard fsbrain subjects_dir API, materialized layout)
 # ---------------------------------------------------------------------------
 cat("\n== fs_LR 32k atlases ==\n");
-mesh_dir <- file.path(repo_root, "template_subject_meshes", "fs_LR_32");
-atlas_dir <- file.path(repo_root, "atlas_fs_LR_32");
+fslr_subjects_dir <- file.path(repo_root, "subjects_dir");
+fslr_subject <- "fs_LR_32";
+
+# Always re-materialize surf/ and label/ from the current sources (converted
+# meshes + atlas_fs_LR_32/ annots), mirroring section 3 for fsaverage.
+fslr_rearrange_script <- file.path(repo_root, "dev_tools", "rearrange_fs_LR_32_into_subjects_dir.sh");
+if (!file.exists(fslr_rearrange_script)) {
+  stop(sprintf("Rearrange script not found: %s", fslr_rearrange_script));
+}
+cat("  Refreshing fs_LR 32k subjects_dir layout (rearrange_fs_LR_32_into_subjects_dir.sh) ...\n");
+status <- system2("bash", c(fslr_rearrange_script));
+if (status != 0L) stop("rearrange_fs_LR_32_into_subjects_dir.sh failed.");
+
 fslr_atlases <- c("aparc_conv", "aal3", "brainnetome",
                   "schaefer100", "schaefer200", "schaefer300", "schaefer400", "schaefer1000");
 surface_name <- "inflated";   # visualize the parcellations on the inflated mesh
 
 for (atlas in fslr_atlases) {
   cat(sprintf("  rendering fs_LR 32k/%s ...\n", atlas));
-  lh_surf <- freesurferformats::read.fs.surface(file.path(mesh_dir, sprintf("fs_LR.32k.L.%s.surf.gii", surface_name)));
-  rh_surf <- freesurferformats::read.fs.surface(file.path(mesh_dir, sprintf("fs_LR.32k.R.%s.surf.gii", surface_name)));
-  lh_annot <- freesurferformats::read.fs.annot(file.path(atlas_dir, sprintf("lh.%s.annot", atlas)));
-  rh_annot <- freesurferformats::read.fs.annot(file.path(atlas_dir, sprintf("rh.%s.annot", atlas)));
-  cm_lh <- fsbrain::coloredmesh.from.preloaded.data(lh_surf, col = lh_annot$hex_colors_rgb, hemi = "lh");
-  cm_rh <- fsbrain::coloredmesh.from.preloaded.data(rh_surf, col = rh_annot$hex_colors_rgb, hemi = "rh");
+  cm <- fsbrain::vis.subject.annot(fslr_subjects_dir, fslr_subject, atlas, surface = surface_name, views = NULL);
   # Categorical atlas colors: no data range, so no colorbar.
-  render_to_png(list("lh" = cm_lh, "rh" = cm_rh), file.path(outdir, sprintf("fsLR32_%s.png", atlas)),
+  render_to_png(cm, file.path(outdir, sprintf("fsLR32_%s.png", atlas)),
                 draw_colorbar = FALSE);
 }
+
 
 cat(sprintf("\nDone. Images written to: %s\n", outdir));
