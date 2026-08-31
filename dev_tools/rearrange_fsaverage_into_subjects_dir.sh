@@ -1,27 +1,30 @@
 #!/usr/bin/env bash
 #
 # Copy the fsaverage template meshes and the fsaverage cortical atlases from this
-# repository into a FreeSurfer-compatible subjects_dir layout, so the repo can serve
-# directly as $SUBJECTS_DIR (e.g. for fsbrain or FreeSurfer tools).
+# repository into a FreeSurfer-compatible subjects_dir layout at the repo root, so
+# the repo can serve directly as $SUBJECTS_DIR (e.g. for fsbrain or FreeSurfer tools).
+#
+# This script handles the fsaverage subject only. The fs_LR 32k subject is handled
+# by the sibling script dev_tools/rearrange_fs_LR_32_into_subjects_dir.sh.
 #
 # The generated files are NOT tracked in git (see .gitignore); this script only
 # materializes them on your machine. Run it again to refresh after adding atlases.
 #
-# Usage (from anywhere):
-#   bash atlas_fsaverage/subjects_dir/rearrange_into_subjects_dir.sh
+# Usage (from the repository root):
+#   bash dev_tools/rearrange_fsaverage_into_subjects_dir.sh
 #
 # Resulting layout:
-#   atlas_fsaverage/subjects_dir/fsaverage/
+#   subjects_dir/fsaverage/
 #     surf/   # template meshes (inflated, pial, white, ...)
 #     label/  # cortical atlas annotation files (lh/rh .annot)
 #
-# Then, e.g.:  export SUBJECTS_DIR="$PWD/atlas_fsaverage/subjects_dir"
+# Then, e.g.:  export SUBJECTS_DIR="$PWD/subjects_dir"
 
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-SUBJ_DIR="$SCRIPT_DIR"                                  # atlas_fsaverage/subjects_dir
-REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"            # repository root
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"            # repository root (dev_tools/ is directly under it)
+SUBJ_DIR="$REPO_ROOT/subjects_dir"                     # FreeSurfer subjects dir at the repo root
 SUBJ="$SUBJ_DIR/fsaverage"
 
 MESH_SRC="$REPO_ROOT/template_subject_meshes/fsaverage" # source template meshes
@@ -63,5 +66,7 @@ for f in "${annots[@]}"; do
 done
 
 echo
-echo "Done. The repo now serves as a FreeSurfer subjects dir:"
-echo "  export SUBJECTS_DIR=\"$SUBJ_DIR\""
+cat <<EOF
+Done. The repo now serves as a FreeSurfer subjects dir (with fsaverage and fs_LR_32):
+  export SUBJECTS_DIR="$SUBJ_DIR"
+EOF

@@ -116,7 +116,7 @@ WORK="$(mktemp -d -t fslr2fsavg.XXXXXX)"
 trap 'rm -rf "$WORK"' EXIT
 
 MRIS_CONVERT="$FREESURFER_HOME/bin/mris_convert"
-ATLASES=(aal3 aparc brainnetome schaefer100 schaefer200 schaefer300 schaefer400 schaefer1000)
+ATLASES=(aal3 aparc_conv brainnetome schaefer100 schaefer200 schaefer300 schaefer400 schaefer1000)
 
 mkdir -p "$ATLAS_OUT"
 

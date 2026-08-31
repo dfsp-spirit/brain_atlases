@@ -6,8 +6,8 @@
 
 Commonly used cortical atlases in neuroimaging research, provided on the two standard human surface templates:
 
-* **`fsaverage`** (FreeSurfer, 163,842 verts/hemi): `HCP-MMP1`, `aparc`, `aal3`, `brainnetome`, `schaefer100`–`schaefer1000`
-* **`fs_LR_32`** (conte69 / 32k, 32,492 verts/hemi): `aparc`, `aal3`, `brainnetome`, `schaefer100`–`schaefer1000`
+* **`fsaverage`** (FreeSurfer, 163,842 verts/hemi): `HCP-MMP1`, `aparc_conv`, `aal3`, `brainnetome`, `schaefer100`–`schaefer1000`
+* **`fs_LR_32`** (conte69 / 32k, 32,492 verts/hemi): `aparc_conv`, `aal3`, `brainnetome`, `schaefer100`–`schaefer1000`
 
 Most of these atlases are natively distributed only for the `fs_LR_32` mesh. The `fsaverage` versions in here were produced by the conversion pipeline in this repo: the `fs_LR_32` atlases are resampled to `fsaverage` with Connectome Workbench, using the HCP deformation spheres and medial-wall masking (reproducible via `dev_tools/convert_fsLR32_to_fsaverage.sh`).
 
@@ -19,8 +19,8 @@ The atlases are **the work of their respective authors** — we only distribute 
 
 | Path | Contents |
 |---|---|
-| `atlas_fsaverage/` | Atlases on the FreeSurfer `fsaverage` template (163,842 verts/hemi): HCP-MMP1, plus `aparc`, `aal3`, `brainnetome`, `schaefer100`–`schaefer1000` (resampled from `fs_LR` 32k). |
-| `atlas_fs_LR_32/` | Atlases on the `fs_LR` 32k template (32,492 verts/hemi): `aparc`, `aal3`, `brainnetome`, `schaefer100`–`schaefer1000`. |
+| `atlas_fsaverage/` | Atlases on the FreeSurfer `fsaverage` template (163,842 verts/hemi): HCP-MMP1, plus `aparc_conv`, `aal3`, `brainnetome`, `schaefer100`–`schaefer1000` (resampled from `fs_LR` 32k). |
+| `atlas_fs_LR_32/` | Atlases on the `fs_LR` 32k template (32,492 verts/hemi): `aparc_conv`, `aal3`, `brainnetome`, `schaefer100`–`schaefer1000`. |
 | `template_subject_meshes/` | Standard template surfaces: `fsaverage/` (FreeSurfer) and `fs_LR_32/` (DiedrichsenLab), plus `registration/` (HCP deformation spheres + cortex ROIs used for the fs_LR ↔ fsaverage resampling). |
 | `dev_tools/` | Conversion scripts: `convert_fsLR32_to_fsaverage.sh` resamples the `fs_LR` 32k atlases to `fsaverage` using the HCP deformation spheres (needs Connectome Workbench + FreeSurfer + R), `visualize_all.R` renders all atlases with the headless scimesh backend, `make_readme_previews.sh` builds the preview images shown in the [Gallery](#gallery) below, and `audit/audit_annots.R` audits all atlases (region counts, per-region CSV tables, provenance-driven) — see note below). |
 
@@ -30,9 +30,9 @@ The atlases are **the work of their respective authors** — we only distribute 
 
 The atlases are stored as FreeSurfer annotation (`.annot`) files. Read them with the standard tool of your language:
 
-* **R** — `freesurferformats::read.fs.annot("atlas_fs_LR_32/lh.aparc.annot")`
-* **Python** — `nibabel.freesurfer.read_annot("atlas_fs_LR_32/lh.aparc.annot")`
-* **MATLAB** — FreeSurfer's `read_annotation("atlas_fs_LR_32/lh.aparc.annot")` (from `$FREESURFER_HOME/matlab/`)
+* **R** — `freesurferformats::read.fs.annot("atlas_fs_LR_32/lh.aparc_conv.annot")`
+* **Python** — `nibabel.freesurfer.read_annot("atlas_fs_LR_32/lh.aparc_conv.annot")`
+* **MATLAB** — FreeSurfer's `read_annotation("atlas_fs_LR_32/lh.aparc_conv.annot")` (from `$FREESURFER_HOME/matlab/`)
 
 The annots are per-hemisphere (`lh.*` / `rh.*`); use them together with the matching template surfaces in [`template_subject_meshes/`](./template_subject_meshes/).
 
@@ -61,7 +61,7 @@ Visually, the different Schaefer variants look the same, but they of course do h
 
 | | | |
 |---|---|---|
-| [![HCP-MMP1](dev_tools/visualize_all_output/previews/fsaverage_HCPMMP1_thumb.png)](dev_tools/visualize_all_output/fsaverage_HCPMMP1.png) | [![aparc](dev_tools/visualize_all_output/previews/fsaverage_aparc_thumb.png)](dev_tools/visualize_all_output/fsaverage_aparc.png) | [![aal3](dev_tools/visualize_all_output/previews/fsaverage_aal3_thumb.png)](dev_tools/visualize_all_output/fsaverage_aal3.png) |
+| [![HCP-MMP1](dev_tools/visualize_all_output/previews/fsaverage_HCPMMP1_thumb.png)](dev_tools/visualize_all_output/fsaverage_HCPMMP1.png) | [![aparc_conv](dev_tools/visualize_all_output/previews/fsaverage_aparc_conv_thumb.png)](dev_tools/visualize_all_output/fsaverage_aparc_conv.png) | [![aal3](dev_tools/visualize_all_output/previews/fsaverage_aal3_thumb.png)](dev_tools/visualize_all_output/fsaverage_aal3.png) |
 | [![brainnetome](dev_tools/visualize_all_output/previews/fsaverage_brainnetome_thumb.png)](dev_tools/visualize_all_output/fsaverage_brainnetome.png) | [![schaefer100](dev_tools/visualize_all_output/previews/fsaverage_schaefer100_thumb.png)](dev_tools/visualize_all_output/fsaverage_schaefer100.png) | [![schaefer200](dev_tools/visualize_all_output/previews/fsaverage_schaefer200_thumb.png)](dev_tools/visualize_all_output/fsaverage_schaefer200.png) |
 | [![schaefer300](dev_tools/visualize_all_output/previews/fsaverage_schaefer300_thumb.png)](dev_tools/visualize_all_output/fsaverage_schaefer300.png) | [![schaefer400](dev_tools/visualize_all_output/previews/fsaverage_schaefer400_thumb.png)](dev_tools/visualize_all_output/fsaverage_schaefer400.png) | [![schaefer1000](dev_tools/visualize_all_output/previews/fsaverage_schaefer1000_thumb.png)](dev_tools/visualize_all_output/fsaverage_schaefer1000.png) |
 
@@ -69,7 +69,7 @@ Visually, the different Schaefer variants look the same, but they of course do h
 
 | | | | |
 |---|---|---|---|
-| [![aparc](dev_tools/visualize_all_output/previews/fsLR32_aparc_thumb.png)](dev_tools/visualize_all_output/fsLR32_aparc.png) | [![aal3](dev_tools/visualize_all_output/previews/fsLR32_aal3_thumb.png)](dev_tools/visualize_all_output/fsLR32_aal3.png) | [![brainnetome](dev_tools/visualize_all_output/previews/fsLR32_brainnetome_thumb.png)](dev_tools/visualize_all_output/fsLR32_brainnetome.png) | [![schaefer100](dev_tools/visualize_all_output/previews/fsLR32_schaefer100_thumb.png)](dev_tools/visualize_all_output/fsLR32_schaefer100.png) |
+| [![aparc_conv](dev_tools/visualize_all_output/previews/fsLR32_aparc_conv_thumb.png)](dev_tools/visualize_all_output/fsLR32_aparc_conv.png) | [![aal3](dev_tools/visualize_all_output/previews/fsLR32_aal3_thumb.png)](dev_tools/visualize_all_output/fsLR32_aal3.png) | [![brainnetome](dev_tools/visualize_all_output/previews/fsLR32_brainnetome_thumb.png)](dev_tools/visualize_all_output/fsLR32_brainnetome.png) | [![schaefer100](dev_tools/visualize_all_output/previews/fsLR32_schaefer100_thumb.png)](dev_tools/visualize_all_output/fsLR32_schaefer100.png) |
 | [![schaefer200](dev_tools/visualize_all_output/previews/fsLR32_schaefer200_thumb.png)](dev_tools/visualize_all_output/fsLR32_schaefer200.png) | [![schaefer300](dev_tools/visualize_all_output/previews/fsLR32_schaefer300_thumb.png)](dev_tools/visualize_all_output/fsLR32_schaefer300.png) | [![schaefer400](dev_tools/visualize_all_output/previews/fsLR32_schaefer400_thumb.png)](dev_tools/visualize_all_output/fsLR32_schaefer400.png) | [![schaefer1000](dev_tools/visualize_all_output/previews/fsLR32_schaefer1000_thumb.png)](dev_tools/visualize_all_output/fsLR32_schaefer1000.png) |
 
 ## Audits and detailed per-atlas info
@@ -85,16 +85,17 @@ Run the audit yourself (needs R with `freesurferformats` and `jsonlite`):
 Rscript dev_tools/audit/audit_annots.R
 ```
 
-## Convert fsaverage data layout to FreeSurfer subjects dir
+## Convert atlas layouts to a FreeSurfer subjects dir
 
-To use the fsaverage data directly with FreeSurfer / fsbrain (as `$SUBJECTS_DIR`), run this copy script once:
+To use the data directly with FreeSurfer / fsbrain (as `$SUBJECTS_DIR`), run the two copy scripts once:
 
 ```sh
-bash atlas_fsaverage/subjects_dir/rearrange_into_subjects_dir.sh
-export SUBJECTS_DIR="$PWD/atlas_fsaverage/subjects_dir"
+bash dev_tools/rearrange_fsaverage_into_subjects_dir.sh
+bash dev_tools/rearrange_fs_LR_32_into_subjects_dir.sh
+export SUBJECTS_DIR="$PWD/subjects_dir"
 ```
 
-This copies the fsaverage meshes into `fsaverage/surf/` and the atlas `.annot` files into `fsaverage/label/`. You can then copy this directory structure into your standard FreeSurfer subjects dir.
+The fsaverage script copies the fsaverage meshes into `subjects_dir/fsaverage/surf/` and the fsaverage atlas `.annot` files into `subjects_dir/fsaverage/label/`. The fs_LR_32 script does the same for the converted fs_LR 32k meshes (`surf/`) and the fs_LR 32k atlases (`label/`) under `subjects_dir/fs_LR_32/`. You can then copy this directory structure into your standard FreeSurfer subjects dir.
 
 ## Reproduction
 
@@ -119,7 +120,9 @@ The `fs_LR` 32k atlases, template meshes, and HCP registration data are already 
 bash dev_tools/convert_fsLR32_to_fsaverage.sh
 
 # 2. Materialize the FreeSurfer subjects_dir layout (used by step 3)
-bash atlas_fsaverage/subjects_dir/rearrange_into_subjects_dir.sh
+#    (both subjects: fsaverage and fs_LR_32)
+bash dev_tools/rearrange_fsaverage_into_subjects_dir.sh
+bash dev_tools/rearrange_fs_LR_32_into_subjects_dir.sh
 
 # 3. Render all atlases as 4-view PNGs (needs R: fsbrain 0.7.0 + scimesh 0.3.4; visualize_all.R pins these versions)
 Rscript dev_tools/visualize_all.R
@@ -144,12 +147,12 @@ In `$FREESURFER_HOME/subjects/fsaverage/label/` you will find e.g.:
 * the Destrieux atlas (`lh/rh.aparc.a2009s.annot`), and
 * the Yeo et al. (2011) functional parcellations (`lh/rh.Yeo2011_7Networks_N1000.annot` and `lh/rh.Yeo2011_17Networks_N1000.annot`).
 
-Note that the `aparc` atlas for fsaverage in this repo was converted from the fs_LR_32 version for development/comparison purposes only. We do not recommend to use it. Use the one that comes with FreeSurfer.
+Note that the `aparc_conv` atlas in this repo (in both `atlas_fsaverage/` and `atlas_fs_LR_32/`) is the Desikan–Killiany atlas, converted from the fs_LR_32 version for development/comparison purposes only. We do not recommend to use it. Use the one that comes with FreeSurfer. It is deliberately named `aparc_conv` (not `aparc`) so it can never be confused with, or accidentally overwrite, FreeSurfer's own `aparc`.
 
 
 ## Attribution & citation
 
-- Every atlas (and template mesh) has a companion `.attribution.json` file (e.g. `atlas_fs_LR_32/aparc.attribution.json`) that records the **author(s), source, license, and citation DOI**. Please read it before using an atlas. The technical provenance of each file (where it came from, how it was produced, checksums) is recorded in a matching `.provenance.json` file.
+- Every atlas (and template mesh) has a companion `.attribution.json` file (e.g. `atlas_fs_LR_32/aparc_conv.attribution.json`) that records the **author(s), source, license, and citation DOI**. Please read it before using an atlas. The technical provenance of each file (where it came from, how it was produced, checksums) is recorded in a matching `.provenance.json` file.
 - **Cite the original papers** if you use any atlas in your work — the DOIs are listed in the `.attribution.json` files. The atlases belong to their respective research groups; this repository merely redistributes them.
 - Template meshes come from their respective sources; see `template_subject_meshes/fs_LR_32/fs_LR_32k.attribution.json` for the `fs_LR_32` surfaces and `template_subject_meshes/fsaverage/fsaverage.attribution.json` for the `fsaverage` surfaces.
 

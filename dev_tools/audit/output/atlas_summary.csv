@@ -1,8 +1,8 @@
 "atlas","space","hemisphere","ctab_rows","regions","used_labels","vertices","expected","mesh_ok","derived","source_mesh"
 "aal3","atlas_fsaverage","lh",44,43,44,163842,163842,"ok",TRUE,"fs_LR_32"
 "aal3","atlas_fsaverage","rh",47,46,47,163842,163842,"ok",TRUE,"fs_LR_32"
-"aparc","atlas_fsaverage","lh",36,35,36,163842,163842,"ok",TRUE,"fs_LR_32"
-"aparc","atlas_fsaverage","rh",36,35,36,163842,163842,"ok",TRUE,"fs_LR_32"
+"aparc_conv","atlas_fsaverage","lh",36,35,36,163842,163842,"ok",TRUE,"fs_LR_32"
+"aparc_conv","atlas_fsaverage","rh",36,35,36,163842,163842,"ok",TRUE,"fs_LR_32"
 "brainnetome","atlas_fsaverage","lh",106,105,106,163842,163842,"ok",TRUE,"fs_LR_32"
 "brainnetome","atlas_fsaverage","rh",106,105,106,163842,163842,"ok",TRUE,"fs_LR_32"
 "HCPMMP1","atlas_fsaverage","lh",181,181,181,163842,163842,"ok",FALSE,NA
@@ -19,8 +19,8 @@
 "schaefer400","atlas_fsaverage","rh",201,200,201,163842,163842,"ok",TRUE,"fs_LR_32"
 "aal3","atlas_fs_LR_32","lh",87,86,44,32492,32492,"ok",FALSE,NA
 "aal3","atlas_fs_LR_32","rh",87,86,47,32492,32492,"ok",FALSE,NA
-"aparc","atlas_fs_LR_32","lh",71,70,36,32492,32492,"ok",FALSE,NA
-"aparc","atlas_fs_LR_32","rh",71,70,36,32492,32492,"ok",FALSE,NA
+"aparc_conv","atlas_fs_LR_32","lh",71,70,36,32492,32492,"ok",FALSE,NA
+"aparc_conv","atlas_fs_LR_32","rh",71,70,36,32492,32492,"ok",FALSE,NA
 "brainnetome","atlas_fs_LR_32","lh",211,210,106,32492,32492,"ok",FALSE,NA
 "brainnetome","atlas_fs_LR_32","rh",211,210,106,32492,32492,"ok",FALSE,NA
 "schaefer100","atlas_fs_LR_32","lh",101,100,51,32492,32492,"ok",FALSE,NA

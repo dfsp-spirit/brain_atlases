@@ -33,8 +33,8 @@ if ! command -v montage >/dev/null 2>&1 || ! command -v convert >/dev/null 2>&1;
   exit 1
 fi
 
-FS_ATLASES=(HCPMMP1 aparc aal3 brainnetome schaefer100 schaefer200 schaefer300 schaefer400 schaefer1000)
-LR_ATLASES=(aparc aal3 brainnetome schaefer100 schaefer200 schaefer300 schaefer400 schaefer1000)
+FS_ATLASES=(HCPMMP1 aparc_conv aal3 brainnetome schaefer100 schaefer200 schaefer300 schaefer400 schaefer1000)
+LR_ATLASES=(aparc_conv aal3 brainnetome schaefer100 schaefer200 schaefer300 schaefer400 schaefer1000)
 
 echo "== labeled overview montages =="
 

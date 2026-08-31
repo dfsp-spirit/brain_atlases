@@ -47,7 +47,7 @@ mesh_info <- list(
 origins <- list(
   # downloaded cortical atlases on conte69/fs_LR 32k (from OSF, via yabplot);
   # files are explicit because atlas_fs_LR_32/ holds all 8 atlases.
-  list(atlas = "aparc",        space = "atlas_fs_LR_32", files = c("lh.aparc.annot", "rh.aparc.annot")),
+  list(atlas = "aparc_conv",   space = "atlas_fs_LR_32", files = c("lh.aparc_conv.annot", "rh.aparc_conv.annot")),
   list(atlas = "aal3",         space = "atlas_fs_LR_32", files = c("lh.aal3.annot", "rh.aal3.annot")),
   list(atlas = "brainnetome",  space = "atlas_fs_LR_32", files = c("lh.brainnetome.annot", "rh.brainnetome.annot")),
   list(atlas = "schaefer100",  space = "atlas_fs_LR_32", files = c("lh.schaefer100.annot", "rh.schaefer100.annot")),

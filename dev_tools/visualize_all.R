@@ -9,7 +9,7 @@
 #   * fsaverage atlases (atlas_fsaverage/) are rendered on the fsaverage template
 #     through the standard fsbrain subjects_dir API (medial views, like the
 #     '02_annot_medial_views' example in fsbrain/examples/rgl_vs_scimesh). The
-#     rearrange script (atlas_fsaverage/subjects_dir/rearrange_into_subjects_dir.sh)
+#     rearrange script (dev_tools/rearrange_fsaverage_into_subjects_dir.sh)
 #     is run unconditionally first so surf/ and label/ in the subjects_dir layout
 #     always mirror the current atlas_fsaverage/ annots (stale copies would render
 #     outdated labels).
@@ -99,14 +99,14 @@ render_to_png <- function(coloredmeshes, outfile,
 # 3. fsaverage atlases (standard fsbrain subjects_dir API)
 # ---------------------------------------------------------------------------
 cat("\n== fsaverage atlases ==\n");
-fsaverage_subjects_dir <- file.path(repo_root, "atlas_fsaverage", "subjects_dir");
+fsaverage_subjects_dir <- file.path(repo_root, "subjects_dir");
 fsaverage_subject <- "fsaverage";
 
 # Always re-materialize surf/ and label/ from the current atlas_fsaverage/ annots.
 # Running the rearrange script unconditionally guarantees the render matches the
 # latest annots (previously it only ran when the layout was missing, which left
 # stale copies of outdated annots in subjects_dir/fsaverage/label/).
-rearrange_script <- file.path(fsaverage_subjects_dir, "rearrange_into_subjects_dir.sh");
+rearrange_script <- file.path(repo_root, "dev_tools", "rearrange_fsaverage_into_subjects_dir.sh");
 if (!file.exists(rearrange_script)) {
   stop(sprintf("Rearrange script not found: %s", rearrange_script));
 }
@@ -114,7 +114,7 @@ cat("  Refreshing fsaverage subjects_dir layout (rearrange_into_subjects_dir.sh)
 status <- system2("bash", c(rearrange_script));
 if (status != 0L) stop("rearrange_into_subjects_dir.sh failed.");
 
-fsaverage_atlases <- c("HCPMMP1", "aparc", "aal3", "brainnetome",
+fsaverage_atlases <- c("HCPMMP1", "aparc_conv", "aal3", "brainnetome",
                        "schaefer100", "schaefer200", "schaefer300", "schaefer400", "schaefer1000");
 for (atlas in fsaverage_atlases) {
   cat(sprintf("  rendering fsaverage/%s ...\n", atlas));
@@ -128,7 +128,7 @@ for (atlas in fsaverage_atlases) {
 cat("\n== fs_LR 32k atlases ==\n");
 mesh_dir <- file.path(repo_root, "template_subject_meshes", "fs_LR_32");
 atlas_dir <- file.path(repo_root, "atlas_fs_LR_32");
-fslr_atlases <- c("aparc", "aal3", "brainnetome",
+fslr_atlases <- c("aparc_conv", "aal3", "brainnetome",
                   "schaefer100", "schaefer200", "schaefer300", "schaefer400", "schaefer1000");
 surface_name <- "inflated";   # visualize the parcellations on the inflated mesh
 
