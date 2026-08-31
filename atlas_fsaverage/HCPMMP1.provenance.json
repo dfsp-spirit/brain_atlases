@@ -1,6 +1,6 @@
 {
   "atlas": "HCPMMP1",
-  "space": "atlas_fsaverage",
+  "space": "fsaverage",
   "derived": false,
   "origin": "download",
   "source_url": "https://figshare.com/articles/dataset/HCP-MMP1_0_projected_on_fsaverage/3498446",

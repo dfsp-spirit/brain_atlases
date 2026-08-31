@@ -1,6 +1,6 @@
 {
   "atlas": "HCPMMP1",
-  "origin_space": "atlas_fsaverage",
+  "origin_space": "fsaverage",
   "title": "HCP-MMP1.0 projected on fsaverage",
   "authors": "Matthew F. Glasser et al.",
   "source_url": "https://figshare.com/articles/dataset/HCP-MMP1_0_projected_on_fsaverage/3498446",

@@ -65,6 +65,26 @@ for f in "${annots[@]}"; do
   echo "  label/$(basename "$f")"
 done
 
+# 3. fsaverage atlas metadata (attribution + provenance) -> fsaverage/label
+echo "== copying fsaverage atlas metadata to $SUBJ/label =="
+meta=( "$ATLAS_SRC"/*.attribution.json "$ATLAS_SRC"/*.provenance.json )
+if [[ ${#meta[@]} -eq 0 ]]; then
+  echo "  (no metadata files found in $ATLAS_SRC)"
+fi
+for f in "${meta[@]}"; do
+  cp "$f" "$SUBJ/label/"
+  echo "  label/$(basename "$f")"
+done
+
+# 4. fsaverage mesh metadata (attribution + provenance) -> fsaverage/surf
+echo "== copying fsaverage mesh metadata to $SUBJ/surf =="
+for f in "$MESH_SRC"/fsaverage.attribution.json "$MESH_SRC"/fsaverage.provenance.json; do
+  if [[ -f "$f" ]]; then
+    cp "$f" "$SUBJ/surf/"
+    echo "  surf/$(basename "$f")"
+  fi
+done
+
 echo
 cat <<EOF
 Done. The repo now serves as a FreeSurfer subjects dir (with fsaverage and fs_LR_32):

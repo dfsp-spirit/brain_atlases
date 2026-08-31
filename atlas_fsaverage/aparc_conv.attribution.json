@@ -1,0 +1,15 @@
+{
+  "atlas": "aparc_conv",
+  "origin_space": "fsaverage",
+  "title": "Desikan-Killiany cortical parcellation (aparc_conv), on fsaverage mesh",
+  "authors": "FreeSurfer (Desikan et al.)",
+  "source_url": "https://osf.io/q5a2v/download",
+  "license": {
+    "name": "FreeSurfer license",
+    "url": "https://surfer.nmr.mgh.harvard.edu/fswiki/FreeSurferUsage"
+  },
+  "acquired_at": "2026-08-29",
+  "citation": "Desikan RS, et al. An automated labeling system for subdividing the human cerebral cortex on MRI scans into gyral based regions of interest. NeuroImage 2006;31(3):968-980.",
+  "dois": ["10.1016/j.neuroimage.2006.01.021"],
+  "notes": "Derived: resampled to the FreeSurfer fsaverage mesh (163,842 vertices/hemisphere) from the fs_LR 32k version; see atlas_fsaverage/aparc_conv.provenance.json. Original attribution of the source atlas applies."
+}

@@ -22,7 +22,9 @@
     "template_subject_meshes/fs_LR_32/fs_LR.32k.R.pial.surf.gii": "sha256:d8c5e1febb26836c5c2477595f65098c835d9a255df5fad19d1d7b5016f03c4e",
     "template_subject_meshes/fs_LR_32/fs_LR.32k.R.sphere.surf.gii": "sha256:1a898433a9f1070e4e0435d4db966776ecc3291bfcd444efc7910aeffb91561c",
     "template_subject_meshes/fs_LR_32/fs_LR.32k.R.very_inflated.surf.gii": "sha256:352c54049948d1d3311dcae38d5db53f5299f22d9c0e5140f2eaf9a520b1f0e5",
-    "template_subject_meshes/fs_LR_32/fs_LR.32k.R.white.surf.gii": "sha256:223eea055b6e8c57159c72861d7a73917e172b3c2adcc0ff3dd0b27fc5e842f8"
+    "template_subject_meshes/fs_LR_32/fs_LR.32k.R.white.surf.gii": "sha256:223eea055b6e8c57159c72861d7a73917e172b3c2adcc0ff3dd0b27fc5e842f8",
+    "template_subject_meshes/fs_LR_32/converted_to_freesurfer_surf_format/lh.cortex.label": "sha256:07b4c39a0660e178d884317d0652acd8b9df9cad8d74f108682cac9deeb8aaaf",
+    "template_subject_meshes/fs_LR_32/converted_to_freesurfer_surf_format/rh.cortex.label": "sha256:eac1438570ce65ac53b0d59779cf89e1fe20d8b0a0dbe04859d75dd76671e2d6"
   },
   "generated_at": "2026-08-30"
 }

@@ -95,7 +95,7 @@ bash dev_tools/rearrange_fs_LR_32_into_subjects_dir.sh
 export SUBJECTS_DIR="$PWD/subjects_dir"
 ```
 
-The fsaverage script copies the fsaverage meshes into `subjects_dir/fsaverage/surf/` and the fsaverage atlas `.annot` files into `subjects_dir/fsaverage/label/`. The fs_LR_32 script does the same for the converted fs_LR 32k meshes (`surf/`) and the fs_LR 32k atlases (`label/`) under `subjects_dir/fs_LR_32/`. You can then copy this directory structure into your standard FreeSurfer subjects dir.
+The fsaverage script copies the fsaverage meshes into `subjects_dir/fsaverage/surf/` and the fsaverage atlas `.annot` files into `subjects_dir/fsaverage/label/`. The fs_LR_32 script does the same for the converted fs_LR 32k meshes (`surf/`) and the fs_LR 32k atlases (`label/`) under `subjects_dir/fs_LR_32/`. Both scripts also copy each dataset's `.attribution.json` and `.provenance.json` next to the data files they describe, and both subjects ship cortex labels (`lh/rh.cortex.label`) in `label/`. You can then copy this directory structure into your standard FreeSurfer subjects dir.
 
 ## Reproduction
 

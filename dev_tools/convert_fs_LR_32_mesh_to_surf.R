@@ -131,3 +131,53 @@ convert_one <- function(src_name) {
 cat(sprintf("Converting %d fs_LR 32k meshes to FreeSurfer surface format...\n", length(mesh_files)));
 results <- lapply(sort(mesh_files), convert_one);
 cat(sprintf("\nDone. Wrote %d FreeSurfer surface files to: %s\n", length(results), outdir));
+
+# ---------------------------------------------------------------------------
+# 5. Write the cortex labels (lh.cortex.label / rh.cortex.label)
+# ---------------------------------------------------------------------------
+# A FreeSurfer subject usually ships a per-hemisphere cortex label that lists the
+# cortex (non-medial-wall) vertices. fsaverage ships one
+# (template_subject_meshes/fsaverage/lh.cortex.label); we derive the same for the
+# fs_LR 32k mesh from the HCP no-medial-wall ROI in
+# template_subject_meshes/registration/ (value 1 = cortex, 0 = medial wall).
+# The coordinates written into the label are placeholders: FreeSurfer tools use the
+# vertex indices, not the coordinates, of a cortex label.
+if (!requireNamespace("gifti", quietly = TRUE)) {
+  stop('R package "gifti" is required to write the cortex labels. Install it with: install.packages("gifti", dependencies=TRUE)');
+}
+suppressMessages(library(gifti));
+
+REG_DIR <- file.path(repo_root, "template_subject_meshes", "registration");
+cortex_re <- "^fs_LR\\.32k\\.([LR])\\.nomedialwall\\.label\\.gii$";
+roi_files <- list.files(REG_DIR, pattern = cortex_re, full.names = TRUE);
+if (length(roi_files) == 0L) {
+  warning(sprintf("No no-medial-wall ROI files found in %s; skipping cortex label generation.", REG_DIR));
+} else {
+  cat("Writing fs_LR 32k cortex labels...\n");
+  for (roi_path in sort(roi_files)) {
+    roi_name <- basename(roi_path);
+    m <- regexec(cortex_re, roi_name);
+    parts <- regmatches(roi_name, m)[[1]];
+    hemi_code <- parts[2];
+    hemi_fs <- hemi_to_fs[[hemi_code]];
+
+    roi <- gifti::read_gifti(roi_path)$data[[1]];
+    cortex_verts <- which(as.integer(roi) == 1L);   # 1-based vertex indices
+    if (length(cortex_verts) == 0L || length(cortex_verts) >= length(roi)) {
+      stop(sprintf("Unexpected cortex vertex count (%d of %d) in ROI %s",
+                   length(cortex_verts), length(roi), roi_path));
+    }
+
+    cortex_label_path <- file.path(outdir, sprintf("%s.cortex.label", hemi_fs));
+    freesurferformats::write.fs.label(cortex_label_path, vertex_indices = cortex_verts,
+                                      indices_are_one_based = TRUE);
+
+    # Read-back check: the label must contain exactly the cortex vertex indices.
+    check <- freesurferformats::read.fs.label(cortex_label_path);   # 0-based as stored
+    if (length(check) != length(cortex_verts)) {
+      stop(sprintf("Read-back mismatch for cortex label %s: wrote %d vertices, read %d",
+                   cortex_label_path, length(cortex_verts), length(check)));
+    }
+    cat(sprintf("  wrote cortex label %s (%d vertices)\n", cortex_label_path, length(cortex_verts)));
+  }
+}

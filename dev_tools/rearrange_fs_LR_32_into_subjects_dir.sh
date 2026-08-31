@@ -31,6 +31,7 @@ SUBJ="$SUBJ_DIR/fs_LR_32"
 
 MESH_SRC="$REPO_ROOT/template_subject_meshes/fs_LR_32/converted_to_freesurfer_surf_format" # converted meshes
 ATLAS_SRC="$REPO_ROOT/atlas_fs_LR_32"                # source fs_LR 32k annots
+MESH_META_SRC="$REPO_ROOT/template_subject_meshes/fs_LR_32" # mesh attribution/provenance (metadata for the converted meshes)
 
 mkdir -p "$SUBJ/surf" "$SUBJ/label"
 
@@ -43,8 +44,15 @@ if [[ ${#files[@]} -eq 0 ]]; then
 fi
 
 for f in "${files[@]}"; do
-  cp "$f" "$SUBJ/surf/"
-  echo "  surf/$(basename "$f")"
+  fname="$(basename "$f")"
+  if [[ "$fname" == *.label ]]; then
+    target_dir="label"
+  else
+    target_dir="surf"
+  fi
+
+  cp "$f" "$SUBJ/$target_dir/"
+  echo "  $target_dir/$fname"
 done
 
 # 2. fs_LR 32k atlases (annot files) -> fs_LR_32/label
@@ -56,6 +64,26 @@ fi
 for f in "${annots[@]}"; do
   cp "$f" "$SUBJ/label/"
   echo "  label/$(basename "$f")"
+done
+
+# 3. fs_LR 32k atlas metadata (attribution + provenance) -> fs_LR_32/label
+echo "== copying fs_LR 32k atlas metadata to $SUBJ/label =="
+meta=( "$ATLAS_SRC"/*.attribution.json "$ATLAS_SRC"/*.provenance.json )
+if [[ ${#meta[@]} -eq 0 ]]; then
+  echo "  (no metadata files found in $ATLAS_SRC)"
+fi
+for f in "${meta[@]}"; do
+  cp "$f" "$SUBJ/label/"
+  echo "  label/$(basename "$f")"
+done
+
+# 4. fs_LR 32k mesh metadata (attribution + provenance) -> fs_LR_32/surf
+echo "== copying fs_LR 32k mesh metadata to $SUBJ/surf =="
+for f in "$MESH_META_SRC"/fs_LR_32k.attribution.json "$MESH_META_SRC"/fs_LR_32k.provenance.json; do
+  if [[ -f "$f" ]]; then
+    cp "$f" "$SUBJ/surf/"
+    echo "  surf/$(basename "$f")"
+  fi
 done
 
 echo

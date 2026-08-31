@@ -1,6 +1,6 @@
 {
   "atlas": "schaefer400",
-  "space": "atlas_fsaverage",
+  "space": "fsaverage",
   "mesh": "fsaverage",
   "mesh_n_vertices": 163842,
   "derived": true,
@@ -15,7 +15,7 @@
     "atlas_fsaverage/lh.schaefer400.annot",
     "atlas_fsaverage/rh.schaefer400.annot"
   ],
-  "attribution_file": "atlas_fs_LR_32/schaefer400.attribution.json",
+  "attribution_file": "atlas_fsaverage/schaefer400.attribution.json",
   "method": "HCP fs_LR-deformed_to-fsaverage label-resample (ADAP_BARY_AREA) + medial-wall masking",
   "tools": {
     "wb_command": "2.2.1",

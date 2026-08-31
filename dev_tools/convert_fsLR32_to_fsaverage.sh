@@ -28,9 +28,12 @@
 #   bash dev_tools/convert_fsLR32_to_fsaverage.sh
 #
 # Reads atlases from atlas_fs_LR_32/ and writes fsaverage annots to atlas_fsaverage/.
-# For every converted atlas it also writes a machine-readable provenance.json next to
-# the annots (source files, tool versions, sha256 checksums) that records where the
-# atlas came from and how it was produced.
+# For every converted atlas it also writes machine-readable metadata next to the
+# annots:
+#   * an attribution.json (authors, license, citation; derived from the source fs_LR 32k
+#     attribution, with the space fields adjusted for the fsaverage mesh), and
+#   * a provenance.json (source files, tool versions, sha256 checksums) that records
+#     where the atlas came from and how it was produced.
 
 set -euo pipefail
 
@@ -71,7 +74,7 @@ write_converted_provenance() {
   cat > "$prov" <<EOF
 {
   "atlas": "$atlas",
-  "space": "atlas_fsaverage",
+  "space": "fsaverage",
   "mesh": "fsaverage",
   "mesh_n_vertices": 163842,
   "derived": true,
@@ -86,7 +89,7 @@ write_converted_provenance() {
     "atlas_fsaverage/lh.$atlas.annot",
     "atlas_fsaverage/rh.$atlas.annot"
   ],
-  "attribution_file": "atlas_fs_LR_32/$atlas.attribution.json",
+  "attribution_file": "atlas_fsaverage/$atlas.attribution.json",
   "method": "HCP fs_LR-deformed_to-fsaverage label-resample (ADAP_BARY_AREA) + medial-wall masking",
   "tools": {
     "wb_command": "$wb_ver",
@@ -103,6 +106,55 @@ write_converted_provenance() {
 }
 EOF
   echo "wrote $prov"
+}
+
+# Write the attribution.json for one converted atlas (all paths relative to repo root).
+# The resampling does not change the atlas content, so authorship, license, citation and
+# source_url are carried over verbatim from the source fs_LR 32k attribution. Only the
+# space-related fields change (origin_space, the mesh mention in the title) and a notes
+# entry is added that points to the provenance record for the conversion.
+write_converted_attribution() {
+  local atlas="$1"
+  local src="$ATLAS_SRC/$atlas.attribution.json"
+  local out="$ATLAS_OUT/$atlas.attribution.json"
+
+  python3 - "$src" "$out" "$atlas" <<'PYEOF'
+import json, sys
+
+# Render with 2-space indent, but keep short arrays (e.g. single-element "dois")
+# inline, matching the style of the existing attribution.json files in this repo.
+def render(obj, level=0):
+    pad = " " * (level * 2)
+    if isinstance(obj, dict):
+        if not obj:
+            return "{}"
+        items = ["%s  %s: %s" % (pad, json.dumps(k), render(v, level + 1)) for k, v in obj.items()]
+        return "{\n" + ",\n".join(items) + "\n" + pad + "}"
+    if isinstance(obj, list):
+        if not obj:
+            return "[]"
+        rendered = [render(v, level + 1) for v in obj]
+        if len(rendered) == 1 and "\n" not in rendered[0]:
+            return "[" + rendered[0] + "]"
+        inner = ",\n".join("%s  %s" % (pad, r) for r in rendered)
+        return "[\n" + inner + "\n" + pad + "]"
+    return json.dumps(obj)
+
+src_path, out_path, atlas = sys.argv[1], sys.argv[2], sys.argv[3]
+with open(src_path, "r") as fh:
+    att = json.load(fh)
+att["origin_space"] = "fsaverage"
+att["title"] = att.get("title", "").replace("on conte69/fs_LR 32k mesh", "on fsaverage mesh")
+att["notes"] = (
+    "Derived: resampled to the FreeSurfer fsaverage mesh (163,842 vertices/hemisphere) "
+    "from the fs_LR 32k version; see atlas_fsaverage/%s.provenance.json. Original "
+    "attribution of the source atlas applies." % atlas
+)
+with open(out_path, "w") as fh:
+    fh.write(render(att))
+    fh.write("\n")
+PYEOF
+  echo "wrote $out"
 }
 
 # ---- derived paths -------------------------------------------------------------
@@ -150,8 +202,9 @@ for ATLAS in "${ATLASES[@]}"; do
       "$ATLAS_OUT/${HEMI_LR}.${ATLAS}.annot"
   done
 
-  # 5. write the machine-readable provenance record for this atlas
+  # 5. write the machine-readable provenance and attribution records for this atlas
   write_converted_provenance "$ATLAS"
+  write_converted_attribution "$ATLAS"
 done
 
 echo "DONE. fsaverage annots written to $ATLAS_OUT"
